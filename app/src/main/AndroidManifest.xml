@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Il file manifest definisce alcune proprietà importanti per l'applicazione. E' obbligatorio
+     per ogni app. !-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aerodynamics.airfoil_calculation">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- All'interno del campo application vanno inserite tutte le activity dell'app. E' possibile
+             specificare tanti attributi per ogni esigenza. Per un app semplice questi sono
+             sufficienti !-->
+
+        <activity
+            android:name=".ClAlpha"
+            android:label="@string/title_activity_cl_alpha" />
+        <activity android:name=".BuildGeometry" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize">
+
+            <!-- La MainActivity è l'activity principale alla quale si giunge direttamente dopo aver
+                 cliccato sull'icona dell'app. I seguenti attributi definiscono questa proprietà!-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

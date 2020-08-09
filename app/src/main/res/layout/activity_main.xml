@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Questo è il file di layout della MainActivity. E' possibile innanzitutto notare l'oggetto
+     NestedScrollView. E' una sorta di contenitore per altri oggetti di layout che permette di far
+     scorrere verso il basso la schermata nel caso in cui lo spazio definito dallo schermo del
+     dispositivo non sia sufficiente !-->
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/white"
+    >
+
+<!-- Un secondo contenitore, ospitato all'interno della ScrollView, è il ConstraintLayout. E'
+     una delle tipologie di layout più diffuse, assieme al RelativeLayout e al LinearLayout.
+     Il vantaggio di questo tipo di layout risiede nel nome. Definendo opportunamente una
+     serie di vincoli di posizione è possibile ottenere un layout molto pulito !-->
+
+<!-- Ogni oggetto di layout deve necessariamente avere 2 attributi: l'altezza e la larghezza
+     tutti gli altri sono facoltativi. !-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/activity_main"
+    android:layout_marginBottom="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="1"
+        tools:ignore="MissingConstraints"
+        >
+
+<!-- Le TextView sono i contenitori di testo !-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textAirfoil"
+            android:layout_marginTop="15dp"
+            android:textAlignment="viewStart"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/airfoil"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/s1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@id/all1"
+        app:layout_constraintRight_toLeftOf="@id/d1"
+        tools:ignore="MissingConstraints"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textNacaD"
+            android:layout_marginTop="15dp"
+            android:textAlignment="viewStart"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/nacaD"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/d1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintLeft_toRightOf="@id/s1"
+        app:layout_constraintTop_toBottomOf="@+id/all1"
+        app:layout_constraintWidth_percent="0.5"
+        tools:ignore="MissingConstraints">
+
+<!-- Le EditText contengono i campi per l'immissione di testo da parte dell'utente !-->
+
+        <EditText
+            android:id="@+id/addNACAd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="6"
+            android:inputType="number"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/ColorPrimary"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/s2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@id/d1"
+        app:layout_constraintRight_toLeftOf="@id/d2"
+        tools:ignore="MissingConstraints"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textChord"
+            android:layout_marginTop="15dp"
+            android:textAlignment="viewStart"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/chord"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/d2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintLeft_toRightOf="@id/s2"
+        app:layout_constraintTop_toBottomOf="@+id/d1"
+        app:layout_constraintWidth_percent="0.5"
+        tools:ignore="MissingConstraints"
+
+        >
+
+        <EditText
+            android:id="@+id/addChord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="6"
+            android:inputType="numberDecimal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/ColorPrimary"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/s3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@id/d2"
+        app:layout_constraintRight_toLeftOf="@id/d3"
+        tools:ignore="MissingConstraints"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textStagger"
+            android:layout_marginTop="15dp"
+            android:textAlignment="viewStart"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/angle"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/d3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintLeft_toRightOf="@id/s3"
+        app:layout_constraintTop_toBottomOf="@+id/d2"
+        app:layout_constraintWidth_percent="0.5"
+        tools:ignore="MissingConstraints"
+
+        >
+
+        <EditText
+            android:id="@+id/editStagger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="6"
+            android:inputType="numberDecimal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/ColorPrimary"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/s4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@id/d3"
+        app:layout_constraintRight_toLeftOf="@id/d4"
+        tools:ignore="MissingConstraints"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textNPan"
+            android:layout_marginTop="15dp"
+            android:textAlignment="viewStart"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/nPanels"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/d4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:layout_constraintLeft_toRightOf="@id/s4"
+        app:layout_constraintTop_toBottomOf="@+id/d3"
+        app:layout_constraintWidth_percent="0.5"
+        tools:ignore="MissingConstraints"
+
+        >
+
+        <EditText
+            android:id="@+id/editNPan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ems="6"
+            android:inputType="numberDecimal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColor="@color/ColorPrimary"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="1"
+        app:layout_constraintTop_toBottomOf="@id/d4"
+        tools:ignore="MissingConstraints"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textFreestream"
+            android:layout_marginTop="15dp"
+            android:textAlignment="viewStart"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="25dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/freestream"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/all2"
+            app:layout_constraintRight_toLeftOf="@id/d5"
+            tools:ignore="MissingConstraints"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textPressure"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/pressure"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s5"
+            app:layout_constraintTop_toBottomOf="@+id/all2"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints"
+
+            >
+
+            <EditText
+                android:id="@+id/addPressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:ems="6"
+                android:inputType="numberDecimal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/d5"
+            app:layout_constraintRight_toLeftOf="@id/d6"
+            tools:ignore="MissingConstraints"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDensity"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/density"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s6"
+            app:layout_constraintTop_toBottomOf="@+id/d5"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints"
+
+            >
+
+            <EditText
+                android:id="@+id/addDensity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:ems="6"
+                android:inputType="numberDecimal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/d6"
+            app:layout_constraintRight_toLeftOf="@id/d7"
+            tools:ignore="MissingConstraints"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textSpeed"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/velocity"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s7"
+            app:layout_constraintTop_toBottomOf="@+id/d6"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints"
+
+            >
+
+            <EditText
+                android:id="@+id/editSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:ems="6"
+                android:inputType="numberDecimal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/d7"
+            app:layout_constraintRight_toLeftOf="@id/d8"
+            tools:ignore="MissingConstraints"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textAngolAttack"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/ang_of_att"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s8"
+            app:layout_constraintTop_toBottomOf="@+id/d7"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints">
+
+            <EditText
+                android:id="@+id/editAngOAtt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:ems="6"
+                android:inputType="numberDecimal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/butt1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/d8"
+            app:layout_constraintLeft_toLeftOf="@id/activity_main"
+            app:layout_constraintRight_toRightOf="@id/activity_main"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/ColorPrimary"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@string/buildGem"
+                android:onClick="onClick"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/butt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/butt1"
+            app:layout_constraintLeft_toLeftOf="@id/activity_main"
+            app:layout_constraintRight_toRightOf="@id/activity_main"
+            tools:ignore="MissingConstraints"
+
+            >
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/ColorPrimary"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@string/title_activity_cl_alpha"
+                android:onClick="onClick"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>

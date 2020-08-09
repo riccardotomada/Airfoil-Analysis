@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">NACA Airfoil</string>
+    <string name="airfoil">Fill the fields below with the airfoil information you chose for the test: </string>
+    <string name="pressure">Pressure [Pa]</string>
+    <string name="density">Density [kg/m^3]</string>
+    <string name="velocity">Velocity [m/s]</string>
+    <string name="ang_of_att">Angle of attack [deg]</string>
+    <string name="freestream">Fill the fields below with the flow characteristics you chose for the test:</string>
+    <string name="nacaD">Naca designation</string>
+    <string name="chord">Chord length [m] </string>
+    <string name="angle">Angle of Incidence [deg] </string>
+    <string name="nPanels">Number of panels used for discretization. Min 10, Max 200</string>
+    <string name="buildGem">Geometry, Cp, Cl, Cd</string>
+    <string name="title_activity_cl_alpha">Cl - Alpha Plot</string>
+    <string name="graph_title">The following plot shows the Cl - Alpha curve for the input airfoil, between -10 to 10 degrees.</string>
+    <string name="airfoil_geo">Airfoil</string>
+    <string name="cp_upper">CP - Upper Surface</string>
+    <string name="cp_lower">CP - Lower Surface</string>
+    <string name="x_c">x/c</string>
+    <string name="cp">CP</string>
+    <string name="upper_surface">UPPER SURFACE</string>
+    <string name="lower_surface">LOWER SURFACE</string>
+    <string name="cl">CL, CP integration: </string>
+    <string name="cl1">CL</string>
+    <string name="cl2">CL - KJ</string>
+    <string name="cl_zukowski">CL, Kutta–Joukowski theorem: </string>
+    <string name="cl_thwaites">CL, Thwaites correction (viscous flow): </string>
+    <string name="cd_thwaites">CD, Thwaites correction (viscous flow): </string>
+    <string name="angle1">Angle [deg]</string>
+</resources>

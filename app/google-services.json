@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "811175362300",
+    "firebase_url": "https://naca-airfoil.firebaseio.com",
+    "project_id": "naca-airfoil",
+    "storage_bucket": "naca-airfoil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811175362300:android:91cf7b7c6a8128eb68e179",
+        "android_client_info": {
+          "package_name": "com.aerodynamics.airfoil_calculation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811175362300-8453rl1a5flbbdgron9rksh6rrpakurh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMha8uxRg4628OL9uOV8me7ajrXf1XcwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811175362300-8453rl1a5flbbdgron9rksh6rrpakurh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

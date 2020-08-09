@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NACA Airfoil</string>
+    <string name="airfoil">Compila i seguenti campi con le caratteristiche del profilo scelte per il test: </string>
+    <string name="pressure">Pressione [Pa]</string>
+    <string name="density">Densità [kg/m^3]</string>
+    <string name="velocity">Velocità [m/s]</string>
+    <string name="ang_of_att">Angolo d\'attacco [deg]</string>
+    <string name="freestream">Compila i seguenti campi con le caratteristiche del fluido scelte per il test:</string>
+    <string name="nacaD">Designazione Naca</string>
+    <string name="chord">Lunghezza della corda [m] </string>
+    <string name="angle">Angolo di calettamento [deg] </string>
+    <string name="nPanels">Numero di pannelli utilizzato per la discretizzazione. Min 10, Max 200</string>
+    <string name="buildGem">Geometria, Cp, Cl, Cd</string>
+    <string name="title_activity_cl_alpha">Grafico Cl - Alpha</string>
+    <string name="graph_title">Il seguente grafico illustra la curva Cl - Alpha per il profilo selezionato, calcolata tra -10 e 10 gradi.</string>
+    <string name="airfoil_geo">Profilo</string>
+    <string name="cp_upper">CP - Dorso</string>
+    <string name="cp_lower">CP - Ventre</string>
+    <string name="x_c">x/c</string>
+    <string name="cp">CP</string>
+    <string name="upper_surface">DORSO</string>
+    <string name="lower_surface">VENTRE</string>
+    <string name="cl">CL, integrazione del CP: </string>
+    <string name="cl1">CL</string>
+    <string name="cl2">CL - KJ</string>
+    <string name="cl_zukowski">CL, teorema di Kutta–Joukowski: </string>
+    <string name="cl_thwaites">CL, correzioni viscose con metodo di Thwaites: </string>
+    <string name="cd_thwaites">CD, correzioni viscose con metodo di Thwaites: </string>
+    <string name="angle1">Angolo [deg]</string>
+</resources>

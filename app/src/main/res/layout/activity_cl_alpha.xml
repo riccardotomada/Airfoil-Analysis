@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    tools:context=".ClAlpha"
+    android:background="@color/white">
+
+    <TextView
+        android:id = "@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/graph_title"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        />
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_width = "wrap_content"
+        android:layout_height = "200dip"
+        android:layout_centerHorizontal="true"
+        android:id = "@+id/graph"
+        android:layout_below="@+id/textview"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/graph"
+        android:paddingStart="10dp"
+        android:id="@+id/textCl"
+        android:textAlignment="viewStart"
+        android:text="@string/cl1"
+        android:textColor="#FF6D00"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:layout_below="@+id/textCl"
+        android:id="@+id/textClzukowski"
+        android:textAlignment="viewStart"
+        android:text="@string/cl2"
+        android:textColor="#0097A7"
+        />
+
+    <ScrollView
+        android:layout_width = "match_parent"
+        android:orientation = "vertical"
+        android:layout_height = "match_parent"
+        android:background="@color/white"
+        android:layout_below="@id/textClzukowski"
+        android:layout_marginTop="10dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/s1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintRight_toLeftOf="@id/d1"
+                tools:ignore="MissingConstraints"
+                android:paddingLeft="15dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="15dp"
+                    android:paddingTop="10dp"
+                    android:id = "@+id/table"
+                    >
+                </TableLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/d1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintLeft_toRightOf="@id/s1"
+                tools:ignore="MissingConstraints"
+                android:paddingStart="15dp"
+                >
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingStart="15dp"
+                    android:paddingTop="10dp"
+                    android:id = "@+id/table1"
+                    >
+                </TableLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</RelativeLayout>

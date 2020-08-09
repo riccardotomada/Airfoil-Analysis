@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.aerodynamics.airfoil_calculation.BuildGeometry"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:gravity="center"
+        android:id="@+id/linear"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"/>
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toBottomOf="@+id/linear"
+        tools:ignore="MissingConstraints"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:id="@+id/textGeo"
+        android:textAlignment="viewStart"
+        app:layout_constraintTop_toBottomOf="@+id/graph"
+        android:text="@string/airfoil_geo"
+        android:textColor="#0091EA"
+        tools:ignore="MissingConstraints"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:id="@+id/textUp"
+        android:textAlignment="viewStart"
+        app:layout_constraintTop_toBottomOf="@+id/textGeo"
+        android:text="@string/cp_upper"
+        android:textColor="#7E57C2"
+        tools:ignore="MissingConstraints"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:id="@+id/textLow"
+        android:textAlignment="viewStart"
+        app:layout_constraintTop_toBottomOf="@+id/textUp"
+        android:text="@string/cp_lower"
+        android:textColor="#E65100"
+        tools:ignore="MissingConstraints"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:id="@+id/textCl"
+        android:textAlignment="viewStart"
+        app:layout_constraintTop_toBottomOf="@+id/textLow"
+        android:textColor="#000000"
+        tools:ignore="MissingConstraints"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingStart="10dp"
+        android:id="@+id/textClzukowski"
+        android:textAlignment="viewStart"
+        app:layout_constraintTop_toBottomOf="@+id/textCl"
+        android:textColor="#000000"
+        tools:ignore="MissingConstraints"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingStart="10dp"
+        android:id="@+id/textCltwhaites"
+        android:textAlignment="viewStart"
+        app:layout_constraintTop_toBottomOf="@+id/textClzukowski"
+        android:textColor="#000000"
+        tools:ignore="MissingConstraints"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingStart="10dp"
+        android:id="@+id/textCdtwhaites"
+        android:textAlignment="viewStart"
+        app:layout_constraintTop_toBottomOf="@+id/textCltwhaites"
+        android:textColor="#000000"
+        tools:ignore="MissingConstraints"
+        />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textCdtwhaites"
+        android:layout_marginTop="15dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/s1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintRight_toLeftOf="@id/d1"
+        tools:ignore="MissingConstraints"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+
+        >
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center">
+
+                <TextView
+                    android:id="@+id/titolo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lower_surface"
+                    android:textAlignment="center" />
+
+            </TableRow>
+
+            <TableLayout
+                android:id="@+id/table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+            </TableLayout>
+        </TableLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/d1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintLeft_toRightOf="@id/s1"
+        tools:ignore="MissingConstraints"
+        android:paddingStart="15dp"
+        android:paddingTop="15dp"
+        >
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAlignment="center">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/titolo1"
+                android:textAlignment="center"
+                android:text="@string/upper_surface"/>
+
+        </TableRow>
+
+    <TableLayout
+        android:id="@+id/table1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+    </TableLayout>
+        </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
