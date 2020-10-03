@@ -1,7 +1,7 @@
 package com.aerodynamics.airfoil_calculation;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//Questa classe contiene tutto il codice Java per la schermata Cl_alpha			      //
+//This class contains all the Java code for the Cl_alpha screen                  			      //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import android.graphics.Color;
@@ -42,10 +42,9 @@ public class ClAlpha extends AppCompatActivity {
 		setContentView(R.layout.activity_cl_alpha);
 		mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-		//Il codice presente in questa classe è per la gran parte identico a quello presente
-		//all'interno della classe BuildGeometry. L'unica differenza sostanziale è che ovviamente
-		//in questo caso il profilo non viene disegnato, mentre tutte le operazioni vengono ripetute
-		//all'interno di un ciclo for che varia l'angolo d'attacco del profilo.
+		// The code written in this class is mostly copied from the BuildGeometry class. The only
+		// difference is that no graph is drawn and the operations are repeated inside a for cycle
+		// in which the angle of attack changes on every iteration.
 
 		nacaD = "NACA";
 		nacaD = nacaD + getIntent().getStringExtra("NACA_D");

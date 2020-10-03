@@ -1,7 +1,7 @@
 package com.aerodynamics.airfoil_calculation;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//Questa classe contiene tutto il codice Java per la schermata Geometry,CP,CL,CD			      //
+//This class contains all the Java code about the "Geometery, CP, CL, CD" screen   			      //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +44,9 @@ public class BuildGeometry extends AppCompatActivity {
 		setContentView(R.layout.activity_build_geometry);
 		mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+
+		// Receiving the values typed by the user in the MainActivity
+
 		nacaD = "NACA";
 		nacaD = nacaD + getIntent().getStringExtra("NACA_D");
 		chLn = getIntent().getDoubleExtra("Chord", 1.0);
@@ -54,25 +57,25 @@ public class BuildGeometry extends AppCompatActivity {
 		spd = getIntent().getDoubleExtra("Speed", 30);
 		aOA = getIntent().getDoubleExtra("AngleOA", 0.0);
 
-		//Da qua in poi il tutto è molto simile a quanto visto in classe con MatLab
+		//From here on all the code it's quite similar to the one we implemented on MATLAB.
 
 		double[] refPoint = {0,0};
 
-		//Definisco l'oggetto freeStream di tipo FreeStream (classe appositamente creata) con i valori
-		//scelti dall'utente. Lo stesso vale per l'oggetto airfoil di tipo Airfoil.
+		// Now a FreeStream type object, freeStream, is initialized, using the values typed by the user
+		// in the MainActivity screen. The same is done with an Airfoil type object, named airfoil.
 		FreeStream freeStream = new FreeStream(pr, den, spd, Math.toRadians(aOA));
 
 		Airfoil airfoil = new Airfoil(1, nacaD, chLn, -Math.toRadians(stagg),
 				0.25,refPoint, nPan);
 
-		//Siccome ho pensato che molte funzioni verranno riutilizzate più volte, ho pensato di
-		//separarle dal corpo di questa classe in stile MatLab, creando quindi un'altra classe,
-		//GlobalFunctions, che le comprenda tutte. Utilizzerò l'oggetto myGlobal di seguito definito
-		//per accedere a queste funzioni e operare sulle variabili desiderate.
+		// Since many functions are meant to be used many times and shared with other activities,
+		// I decided to put all of them inside a new class, named GlobalFunctions. In order to use
+		// them a GlobalFunctions object, myGlobal, initialized as follows, will be called every time
+		// it will be necessary.
 
 		GlobalFunctions myGlobal = new GlobalFunctions();
 
-		//Ho cercato di rimanere il più fedele possibile ai nomi delle variabili scelte in MatLab.
+		//I tried to use the same variable names as we already wrote on MATLAB.
 
 		double[][] rr = myGlobal.getCoordinates(airfoil);
 		int[][] ee = myGlobal.connectivityMatrix(rr[0]);
@@ -111,15 +114,15 @@ public class BuildGeometry extends AppCompatActivity {
 			double[][] Au = myGlobal.onBodyUMatrix(elems, nPan);
 			double[][] Av = myGlobal.onBodyVMatrix(elems, nPan);
 
-			//Per risolvere il sistema lineare in cordo d'opera ho scoperto la libreria math3.
-			//Di seguito ho quindi trasformato le matrici e i vettori di tipo double in oggeetti
-			//di tipo definito dalla libreria, cosicchè da poter svolgere le operazioni.
-			//Infine il vettore ottenuto è stato di nuovo trasformato nel tipo double[]
+			// In order to solve the linear system I discovered the math3 library. In the following
+			// lines of code I've "transformed" the matrices and arrays of type double[][] and double[]
+			// into objects I can operate with using the library.
+			// Eventually the solution of the linear system is transformed again in a double[] type
+			// variable.
 
 			RealMatrix Acoefficients = new Array2DRowRealMatrix(A,false);
 
-			//Per rendere più efficiente lo svolgimento della risoluzione del sistema lineare
-			//effettuo la decomposizione LU della matrice A.
+			// LU decomposition of the matrix A.
 			DecompositionSolver solver = new LUDecomposition(Acoefficients).getSolver();
 
 			RealVector bconstants = new ArrayRealVector(b,false);
@@ -204,7 +207,7 @@ public class BuildGeometry extends AppCompatActivity {
 
 			double liftKJ = -freeStream.rho*freeStream.v*Gamma;
 
-			//Calcolo del cl secondo il teorema di Kutta-Jukowski
+			//CL calculus using the Kutta-Joukowski theorem.
 			double cLKJ = liftKJ / (0.5*freeStream.rho*Math.pow(freeStream.v,2)*airfoil.chord);
 
 			double[] rrc_scaledx = new double[nelems];
@@ -235,19 +238,18 @@ public class BuildGeometry extends AppCompatActivity {
 			for(int i = nelems/2; i < nelems; i++)
 				cP2[i - nelems / 2] = cP[i];
 
-			//Purtroppo, a differenza di quanto accade per Matlab, tutte le librerie di grafici che
-			//ho trovato non permettono di effettuare un plot se il vettore delle x non è ordinato dal
-			//valore più piccolo a quello più grande.
+			// Unfortunately, all the graph libraries I have found don't allow to plot anything if
+			// the x array is not ordered from the smallest to the greatest value.
 
-			//Le seguenti righe di codice permettono di riordinare il vettore delle x mantenendo intette
-			//le corrispondenze con gli altri vettori di interesse, quello delle ordinate y (per il disegno
-			//del profilo) e quello del cp (per le curve del cp).
+			// In the following lines of code I reordered the x array keeping unaltered all the
+			// correspondences with the other arrays (y array for the airfoil drawing and cp array
+			// for the CP curve graph).
 
-			//Se due elementi del vettore delle x vengono invertiti di posizione, verranno invertiti anche
-			//i corrispondenti termini delle y e del cp
+			// This means that if two elements of the x array are switched in position, the same
+			// happens for the correspondent elements of the other arrays.
 
-			//Ammetto che è macchinoso e probabilmente ci sono strade più rapide ed efficienti. Ne ho
-			//provate diverse ma alla fine questo è l'unico che mi ha permesso di andare avanti.
+			// I have to admit that this is a cumbersome, complicated and probably not efficient way
+			// to rearrange the arrays, but this is the only way I've been able to overcome this problem.
 
 			boolean swapped = true;
 			int j = 0;
@@ -284,8 +286,7 @@ public class BuildGeometry extends AppCompatActivity {
 				}
 			}
 
-			//Le seguenti 56 righe di codice si riferiscono tutte al grafico in cui viene raffigurato
-			//il profilo assieme alle curve del cp.
+			// The following 56 lines of code refer to the airfoil and CP graph construction.
 
 			DataPoint[] values = new DataPoint[nelems/2];
 			DataPoint[] values1 = new DataPoint[nelems/2];
@@ -342,8 +343,8 @@ public class BuildGeometry extends AppCompatActivity {
 			series3.setColor(Color.rgb(126,87,194));
 			graph.getGridLabelRenderer().setVerticalLabelsSecondScaleColor(Color.BLACK);
 
-			//Di seguito definisco le caratteristiche delle due tabelle in cui sono riportati gli
-			//andamenti del cp in funzione dell'ascissa sul ventre e sul dorso del profilo.
+			// The code below refers to 2 tables, which show the CP behaviour as a function of the position
+			// respectively on the lower and upper surface of the airfoil.
 
 			TableLayout table = (TableLayout) findViewById(R.id.table);
 			TableLayout table1 = (TableLayout) findViewById(R.id.table1);
@@ -386,11 +387,8 @@ public class BuildGeometry extends AppCompatActivity {
 				table1.addView(row1);
 			}
 
-
-
-
-			//Le successive righe di codice sono tutte relative all'implementazione del metodo
-			//di Thwaites per la correzione dei valori ottenuti dovuta agli effetti viscosi
+			//The following lines of code contain the implementation of the Thwaites method for the
+			//viscous flow corrections.
 
 			int n_stg = 0;
 			double csi_stg = 0.0;
@@ -419,7 +417,7 @@ public class BuildGeometry extends AppCompatActivity {
 			double th = Math.acos(nvers[0][i_stg]*nvers[0][i_stg+1]+nvers[1][i_stg]*nvers[1][i_stg+1]);
 			double r0 = len[1]*Math.sin(th) + (len[0] + len[1]*Math.cos(th))/Math.tan(th);
 			double k = freeStream.v/r0;
-			double theta0 = Math.sqrt(0.075*freeStream.kin_visc/k);  //mai utilizzata
+			double theta0 = Math.sqrt(0.075*freeStream.kin_visc/k);  //never used
 
 			double[] Ue = new double[vTi.length];
 			for(int i = 0; i<vTi.length; i++){

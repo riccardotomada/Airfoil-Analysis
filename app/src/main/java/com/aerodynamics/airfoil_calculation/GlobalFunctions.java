@@ -1,15 +1,15 @@
 package com.aerodynamics.airfoil_calculation;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//Questa classe contiene tutte le funzioni condivise tra più activity						      //
+//This class contains all the functions shared between the activities. 						      //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import java.lang.reflect.Array;
 
 public class GlobalFunctions {
 
-	// Tutti i metodi presenti, eccetto quelli commentati nello specifico, sono la trasposizione
-	// in Java delle funzioni scritte in Matlab
+	// All the following methods, except for the ones which are explicitly commented, are the copy
+	// of the MATLAB functions we used in the fluid dynamics laboratory.
 
 	double[][] getCoordinates(Airfoil airfoil){
 
@@ -362,8 +362,8 @@ public class GlobalFunctions {
 		return v;
 	}
 
-	// La function midpoint genera un vettore i cui elementi sono la media degli elementi corrispondenti
-	// di due vettori in ingresso.
+	// The midpoint method returns an array whose elements are the average of the correspondent
+	// elements of the given arrays.
 	double[] midpoint(double[] a, double[] b){
 		double[] c = new double[Array.getLength(a)];
 		for (int i = 0; i < Array.getLength(a); ++i) {
@@ -373,8 +373,8 @@ public class GlobalFunctions {
 		return c;
 	}
 
-	// La function len_norm calcola la norma di un vettore di dimensione 2 dato dalla differenza tra i due in
-	// ingresso.
+	// The len_norm method compute the norm of a 2 dimension array which is obtained by the difference
+	// of the given arrays.
 	double len_norm(double[] a, double[] b){
 		double[] c = new double[2];
 		for (int i = 0; i < 2; i++) {
@@ -391,8 +391,8 @@ public class GlobalFunctions {
 		return c;
 	}
 
-	//Questo metodo è una parte dell function MatLab build_lin_sys e restituisce la matrice dei
-	//coefficienti A
+	// The following method is the correspondent of a part of the Matlab function build_lin_sys
+	// and returns the coefficient matrix A.
 
 	double[][] coefficientMatrix(Elems[] elems, int nChordPanels){
 		int nelems = 2*nChordPanels;
@@ -419,8 +419,8 @@ public class GlobalFunctions {
 		return A;
 	}
 
-	//Questo metodo è una parte dell function MatLab build_lin_sys e restituisce il vettore dei
-	//termini noti b
+	// The following method is the correspondent of a part of the Matlab function build_lin_sys
+	// and returns the array of the known terms.
 
 	double[] coefficientArray(FreeStream freeStream, Elems[] elems, int nChordPanels){
 		int nelems = 2*nChordPanels;
@@ -440,8 +440,8 @@ public class GlobalFunctions {
 		return b;
 	}
 
-	//Questo metodo è una parte dell function MatLab build_lin_sys e restituisce la matrice
-	//ausiliaria Av
+	// The following method is the correspondent of a part of the Matlab function build_lin_sys
+	// and returns the auxiliary matrix Av.
 
 	double[][] onBodyVMatrix(Elems[] elems, int nChordPanels) {
 		int nelems = 2 * nChordPanels;
@@ -463,8 +463,8 @@ public class GlobalFunctions {
 		return Av;
 	}
 
-	//Questo metodo è una parte dell function MatLab build_lin_sys e restituisce la matrice
-	//ausiliaria Au
+	// The following method is the correspondent of a part of the Matlab function build_lin_sys
+	// and returns the auxiliary matrix Au.
 
 	double[][] onBodyUMatrix(Elems[] elems, int nChordPanels) {
 		int nelems = 2 * nChordPanels;
@@ -486,21 +486,21 @@ public class GlobalFunctions {
 		return Au;
 	}
 
-	//Questo metodo restituisce il valore del prodotto vettoriale tra i due vettori in ingresso di dimensione 2
-	//Il risultato viene trattato per quanto serve nel programma come uno scalare, anchè se in realtà
-	//dovrebbe essere un vettore di direzione ortogonale al piano condiviso dai due vettori in ingresso
+	// This method returns the value of the cross product between the two bidimensional given arrays
+	// The result is used as a scalar number, even if mathematically should be threaten as an array
+	// which is orthogonal to the plane shared by the two entry arrays.
 
 	double cross(double[] a, double[] b){
 		return a[0]*b[1]-a[1]*b[0];
 	}
 
-	//Questo metodo restituisce il valore del prodotto scalare tra i due vettori in ingresso di dimensione 2
+	// This method returns the value of the scalar product between the two bidimensional given arrays.
 
 	double scalar2(double[] a, double[] b){
 		return a[0]*b[0]+a[1]*b[1];
 	}
 
-	//Equivalente della funzione linspace di MatLab
+	// The linspace method is the equivalent of the linspace function in Matlab.
 
 	public static double[] linspace(double min, double max, int points) {
 		double[] d = new double[points];
@@ -509,6 +509,8 @@ public class GlobalFunctions {
 		}
 		return d;
 	}
+
+	// The following methods are used in order to apply the Thwaites correction to the boundary layer.
 
 	double thwaites_H(double lambda){
 		double H;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Il file manifest definisce alcune proprietà importanti per l'applicazione. E' obbligatorio
-     per ogni app. !-->
+<!-- The AndroidManifest file defines some important properties for the app. It is mandatory
+        to generate one. -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aerodynamics.airfoil_calculation">
@@ -14,9 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- All'interno del campo application vanno inserite tutte le activity dell'app. E' possibile
-             specificare tanti attributi per ogni esigenza. Per un app semplice questi sono
-             sufficienti !-->
+        <!-- Inside the application field all the activities, which are the "pages" displayed in
+             the app, must be declared. Every activity might have its own attributes and characteristics -->
 
         <activity
             android:name=".ClAlpha"
@@ -26,11 +25,11 @@
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize">
 
-            <!-- La MainActivity è l'activity principale alla quale si giunge direttamente dopo aver
-                 cliccato sull'icona dell'app. I seguenti attributi definiscono questa proprietà!-->
+            <!-- The MainActivity is the principal activity of the app. In this case it's where
+                 the user lands once he clicks on the app icon. This attributes are set thanks to
+                 the intent-filter tags below. -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

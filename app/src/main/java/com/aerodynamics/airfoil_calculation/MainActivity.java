@@ -1,7 +1,7 @@
 package com.aerodynamics.airfoil_calculation;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//Questa classe contiene tutto il codice Java per la schermata iniziale dell'applicazione	      //
+// This class contains all the Java code about the first and main screen of the app      	      //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,10 +14,10 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class MainActivity extends AppCompatActivity {
 
-	//Definisco alcune variabili che verranno inizializzate in seguito.
-	//Tipo EditText --> E' il tipo di variabile corrispondente al campo di testo modificabile dall'utente
-	//Le variabili di tipo String, double, int sono quelle in cui verranno salvati i valori immessi
-	//dall'utente.
+	// In the following lines of code some variable are defined, which later will be initialized.
+	// The variable type EditText is the widget which correspond to the text field which can be filled by the user.
+	// The variable types String, double, int are the ones in which will be saved the numbers written
+	// by the user.
 
 	EditText nacaDes;
 	String nacaD;
@@ -40,22 +40,23 @@ public class MainActivity extends AppCompatActivity {
 
 	@Override
 
-	//le seguenti 2 righe vengono inserite di default per ogni activity, il loro significato è a me
-	//abbastanza oscuro anche se è possibile trovare facilmente una spiegazione su internet.
+	// The following two lines of code are written by default in every activity. Their meaning is not
+	// so clear to me, anyway it is explained on the suggested book.
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//Indico quale file di layout .xml corrisponde a questa activity
+		// This line sets the correspondent layout file (.xml) to this activity
 		setContentView(R.layout.activity_main);
 
-		//Firebase è un prodotto di Google che ha molte funzionalità, tra le quali l'analisi
-		//delle statistiche dell'utilizzo dell'app da parte degli utenti.
+		// Firebase is a Google service which has many features, among them there is the possibility
+		// to analise many statistics about the user behaviour inside th app.
+		// With the following line of code the service will start to collect the default statistics.
 		mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-		//findViewById permette di associare una variabile (ad esempio di tipo EditText) con la
-		//corrispondente porzione di codice all'interno del file di layout .xml
+		// findViewById allows to associate one variable (for example an EditText type one)
+		// with the correspondent portion of code inside the layout (.xml) file.
 		nacaDes = findViewById(R.id.addNACAd);
-		//setHint permette di fornire un suggerimento per l'immisione del testo
+		// setHint allows to display an hint for what the user can type inside the text field.
 		nacaDes.setHint("0012");
 		chordLen = findViewById(R.id.addChord);
 		chordLen.setHint("1.0");
@@ -73,21 +74,22 @@ public class MainActivity extends AppCompatActivity {
 		density.setHint("1.225");
 	}
 
-	//Nel file activity_main ho aggiunto agli oggetti di tipo "button" la
-	//riga di codice android:onClick="onClick". Ciò significa che nel caso in cui l'utente ci clicchi
-	//sopra, questi oggetti sono predisposti a fare accadere qualcosa. Di seguito ho scritto il metodo
-	//onClick che definisce cosa succede quando l'utente clicca su un oggetto di tipo "Button"
+	// Inside the layout file activity_main some "button" widgets type has been defined with the
+	// following attribute: android:onClick="onClick". This attribute makes literally the button clickable,
+	// which means that these widgets are allowed to make something happen once they are clicked.
+	// On the following lines of code the onClick method has been defined, which contains the instruction
+	// that needs to be executed once the buttons are clicked.
 
 
 	public void onClick(View view) {
 
-		//la funzione getText permette di ottenere il testo immesso dall'utente. toString è necessario
-		//per convertire il tipo EditText in String
+		// The getText method returns the text filled by the user. The toString method is necessary
+		// to convert the EditText type to a string.
 		nacaD = nacaDes.getText().toString();
 
-		//Per il debug, senza stare a scrivere qualcosa ogni volta ho messo dei controlli per ogni
-		//testo da inserire. Nel caso il campo di testo sia vuoto (isEmpty), assegno di default
-		//dei valori alle variabili corrispondenti, per risparmiare il tempo di immissione dei caratteri.
+		// To speed up the debug, without the need to type some values every time, I've added
+		// the following if statements which will assign a value to the variables if
+		// the corresponding text fields are empty.
 
 		if(nacaD.isEmpty()){
 			nacaD = "0012";
@@ -97,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
 		}
 		else
 
-		//La funzione parseDouble permette di convertire la stringa di testo recuperata dalla EditText
-		//attraverso getText().toString() in un valore di tipo double.
+		// The parseDouble method allows to convert the text string retrieved by the getText().toString()
+		// methods into a double type value.
 		chLn = Double.parseDouble(chordLen.getText().toString());
 
 		if(incidence.getText().toString().isEmpty()){
@@ -137,20 +139,18 @@ public class MainActivity extends AppCompatActivity {
 		else
 		aOA = Double.parseDouble(anglofattack.getText().toString());
 
-		//Se il profilo scelto è a 4 o 5 cifre, e contemporaneamente il numero di pannelli
-		//selezionato è compreso tra 10 e 200, allora tutto è ok
+		// If the airfoil chosen is characterized by 4 or 5 digits, and at the same time the number
+		// of panels selected is between 10 and 200, everything is fine
 		if((nacaD.length() == 4 || nacaD.length() == 5) && (nPan > 9 && nPan < 201)) {
 
-			//Definisco nello specifico cosa fare nel caso in cui venga selezionato l'oggetto del
-			//layout button1
+			// Now it's defined what happens when the widget button1 is clicked
 			if(view.getId() == R.id.button1) {
 
-				//Con le righe di codice seguenti definisco che se viene selezionato il primo button,
-				//l'activity che comparirà a schermo sarà quella corrispondente alla classe BuildGeometry
+				// Through an Intent, once the button1 is clicked, the BuildGeometry activity will
+				// be displayed on the device sceen.
 
-				//Attraverso il metodo putExtra posso chiedere che da un'activity a quell'altra vengano
-				//trasmessi i valori desiderati di alcune variabili, nello specifico quelle corrispondenti
-				//alle scelte dell'utente.
+				// Thanks to the putExtra method some data can be transferred between the two activities,
+				// in the specific the ones corresponding to the data filled by the user.
 				Intent sendIntent = new Intent(MainActivity.this, BuildGeometry.class);
 				sendIntent.putExtra("NACA_D", nacaD);
 				sendIntent.putExtra("Chord", chLn);
@@ -161,14 +161,12 @@ public class MainActivity extends AppCompatActivity {
 				sendIntent.putExtra("Speed", spd);
 				sendIntent.putExtra("AngleOA", aOA);
 
-				//startActivity fa esattamente quello che dice il nome. In questo caso fa partire
-				//l'activity corrispondente a quanto definito dall'oggetto di tipo Intent sendIntent,
-				//ossia l'activity BuildGeometry.
+				// The startActivity method does exactly what the name says.
 				startActivity(sendIntent);
 			}
 			else{
 
-				//Caso button2
+				// button2 case
 				Intent sendIntent = new Intent(MainActivity.this, ClAlpha.class);
 				sendIntent.putExtra("NACA_D", nacaD);
 				sendIntent.putExtra("Chord", chLn);
@@ -180,11 +178,12 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}
 
-		// Di seguito definisco cosa fare se quanto immesso dall'utente non soddisfi i vincoli presenti
+		// In the following lines it's defined what happens when the user types something which
+		// does not satisfy the constrains imposed by me
 		else if (nacaD.length() < 4 || nacaD.length() > 5){
 
-			//Toast è un oggetto che permette di stampare a schermo un messaggio per la durata di qualche secondo,
-			//in questo caso spiega all'utente cosa ha sbagliato e perchè non passa alla schermata successiva.
+			// The Toast is an object which prints on the screen a message for few seconds,
+			// in this case it explains to the user what went wrong.
 
 			Toast.makeText(this, "Only NACA 4 and 5 digit available", Toast.LENGTH_LONG).show();
 		}

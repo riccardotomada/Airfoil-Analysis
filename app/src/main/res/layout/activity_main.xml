@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Questo è il file di layout della MainActivity. E' possibile innanzitutto notare l'oggetto
-     NestedScrollView. E' una sorta di contenitore per altri oggetti di layout che permette di far
-     scorrere verso il basso la schermata nel caso in cui lo spazio definito dallo schermo del
-     dispositivo non sia sufficiente !-->
+<!-- This is the layout file of the MainActivity.
+
+     First of all it is possible to see the NestedScrollView widget. It is a container for other widgets
+     which literally allows to scroll the screen by the user in case the room is not enough to
+     display everything. !-->
 
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,13 +16,13 @@
     android:background="@color/white"
     >
 
-<!-- Un secondo contenitore, ospitato all'interno della ScrollView, è il ConstraintLayout. E'
-     una delle tipologie di layout più diffuse, assieme al RelativeLayout e al LinearLayout.
-     Il vantaggio di questo tipo di layout risiede nel nome. Definendo opportunamente una
-     serie di vincoli di posizione è possibile ottenere un layout molto pulito !-->
+<!-- A second container, a child of the NestedScrollView, is the ConstraintLayout. It is one
+     of the layout types most used, like the RelativeLayout and the LinearLayout.
+     The advantage of this layout type is written in its name. Defining a series of constrains
+     (on the top, left, right, bottom) it is possible to obtain a very clean and well organised layout
+     !-->
 
-<!-- Ogni oggetto di layout deve necessariamente avere 2 attributi: l'altezza e la larghezza
-     tutti gli altri sono facoltativi. !-->
+<!-- Every widget must have at least two attributes: the layout_width and layout_height. !-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -38,7 +39,7 @@
         tools:ignore="MissingConstraints"
         >
 
-<!-- Le TextView sono i contenitori di testo !-->
+<!-- The TextView widgets are the text containers !-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,7 +93,7 @@
         app:layout_constraintWidth_percent="0.5"
         tools:ignore="MissingConstraints">
 
-<!-- Le EditText contengono i campi per l'immissione di testo da parte dell'utente !-->
+<!-- The EditText widgets are the containers of the text fields which can be filled by the user !-->
 
         <EditText
             android:id="@+id/addNACAd"
