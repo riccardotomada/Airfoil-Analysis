@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ColorPrimary">#455A64</color>
-    <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="ColorPrimaryDark">#263238</color>
-    <color name="ColorAccentcla">#ffffff</color>
     <color name="ColorAccent">#ededee</color>
-    <color name="windowBackground">#ededee</color>
     <color name="textColorPrimary">#000000</color>
 </resources>

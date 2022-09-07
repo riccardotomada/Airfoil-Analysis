@@ -32,10 +32,101 @@
     android:layout_marginBottom="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="1"
+        tools:ignore="MissingConstraints"
+        >
+
+        <!-- The TextView widgets are the text containers !-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textAlignment="viewStart"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/settings"
+        />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all01"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/all0"
+        app:layout_constraintWidth_percent="1"
+        tools:ignore="MissingConstraints"
+        >
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchGround"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="45dp"
+            android:paddingBottom="10dp"
+            android:text="@string/groundEffect"
+            android:textColor="#808080"
+            android:theme="@style/Switch"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all02"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/all01"
+        app:layout_constraintWidth_percent="1"
+        tools:ignore="MissingConstraints"
+        >
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchTail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="45dp"
+            android:paddingBottom="10dp"
+            android:text="@string/wingTailInteraction"
+            android:textColor="#808080"
+            android:theme="@style/Switch"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all03"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/all02"
+        app:layout_constraintWidth_percent="1"
+        tools:ignore="MissingConstraints"
+        >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/all1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent="1"
+        app:layout_constraintTop_toBottomOf="@id/all03"
         tools:ignore="MissingConstraints"
         >
 
@@ -44,8 +135,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textAirfoil"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:textAlignment="viewStart"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -70,15 +160,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textNacaD"
             android:layout_marginTop="15dp"
             android:textAlignment="viewStart"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:paddingTop="15dp"
+            android:paddingTop="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/nacaD"
+            android:text="@string/nacaDW"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -96,16 +185,16 @@
 <!-- The EditText widgets are the containers of the text fields which can be filled by the user !-->
 
         <EditText
-            android:id="@+id/addNACAd"
+            android:id="@+id/addnacaDW"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:ems="6"
             android:inputType="number"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/ColorPrimary"
-            />
+            tools:ignore="Autofill,LabelFor" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -122,12 +211,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textChord"
             android:layout_marginTop="15dp"
             android:textAlignment="viewStart"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:paddingTop="15dp"
+            android:paddingTop="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/chord"
@@ -148,16 +236,16 @@
         >
 
         <EditText
-            android:id="@+id/addChord"
+            android:id="@+id/addChordW"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:ems="6"
             android:inputType="numberDecimal"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/ColorPrimary"
-            />
+            tools:ignore="Autofill,LabelFor" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -167,19 +255,16 @@
         app:layout_constraintWidth_percent="0.5"
         app:layout_constraintTop_toBottomOf="@id/d2"
         app:layout_constraintRight_toLeftOf="@id/d3"
-        tools:ignore="MissingConstraints"
-
-        >
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textStagger"
             android:layout_marginTop="15dp"
             android:textAlignment="viewStart"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:paddingTop="15dp"
+            android:paddingTop="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/angle"
@@ -200,16 +285,16 @@
         >
 
         <EditText
-            android:id="@+id/editStagger"
+            android:id="@+id/editStaggerW"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:ems="6"
-            android:inputType="numberDecimal"
+            android:inputType="numberSigned|numberDecimal"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/ColorPrimary"
-            />
+            tools:ignore="Autofill,LabelFor" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -226,12 +311,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textNPan"
             android:layout_marginTop="15dp"
             android:textAlignment="viewStart"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:paddingTop="15dp"
+            android:paddingTop="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/nPanels"
@@ -247,21 +331,39 @@
         app:layout_constraintLeft_toRightOf="@id/s4"
         app:layout_constraintTop_toBottomOf="@+id/d3"
         app:layout_constraintWidth_percent="0.5"
-        tools:ignore="MissingConstraints"
-
-        >
+        tools:ignore="MissingConstraints">
 
         <EditText
             android:id="@+id/editNPan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:ems="6"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/ColorPrimary"
+            tools:ignore="Autofill,LabelFor" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/all04"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/s4"
+        app:layout_constraintWidth_percent="1"
+        tools:ignore="MissingConstraints"
+        android:paddingTop="10dp"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -269,7 +371,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent="1"
-        app:layout_constraintTop_toBottomOf="@id/d4"
+        app:layout_constraintTop_toBottomOf="@id/all04"
         tools:ignore="MissingConstraints"
 
         >
@@ -277,19 +379,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textFreestream"
             android:layout_marginTop="15dp"
             android:textAlignment="viewStart"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:paddingTop="25dp"
+            android:paddingTop="10dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/freestream"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+  <!--      <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/s5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -393,31 +494,31 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        !-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/s7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintWidth_percent="0.5"
-            app:layout_constraintTop_toBottomOf="@id/d6"
+            app:layout_constraintTop_toBottomOf="@id/all2"
             app:layout_constraintRight_toLeftOf="@id/d7"
-            tools:ignore="MissingConstraints"
-
-            >
+            tools:ignore="MissingConstraints">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textSpeed"
                 android:layout_marginTop="15dp"
                 android:textAlignment="viewStart"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                android:paddingTop="15dp"
+                android:paddingTop="10dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="@string/velocity"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/d7"
@@ -426,23 +527,21 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             app:layout_constraintLeft_toRightOf="@id/s7"
-            app:layout_constraintTop_toBottomOf="@+id/d6"
+            app:layout_constraintTop_toBottomOf="@+id/all2"
             app:layout_constraintWidth_percent="0.5"
-            tools:ignore="MissingConstraints"
-
-            >
+            tools:ignore="MissingConstraints">
 
             <EditText
                 android:id="@+id/editSpeed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:ems="6"
                 android:inputType="numberDecimal"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:textColor="@color/ColorPrimary"
-                />
+                tools:ignore="Autofill,LabelFor" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -452,19 +551,16 @@
             app:layout_constraintWidth_percent="0.5"
             app:layout_constraintTop_toBottomOf="@id/d7"
             app:layout_constraintRight_toLeftOf="@id/d8"
-            tools:ignore="MissingConstraints"
-
-            >
+            tools:ignore="MissingConstraints">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textAngolAttack"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:textAlignment="viewStart"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                android:paddingTop="15dp"
+                android:paddingTop="10dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="@string/ang_of_att"
@@ -486,30 +582,411 @@
                 android:id="@+id/editAngOAtt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="6"
+                android:inputType="numberDecimal|numberSigned"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                tools:ignore="Autofill,LabelFor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/all05"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/d8"
+            app:layout_constraintWidth_percent="1"
+            tools:ignore="MissingConstraints"
+            android:paddingTop="10dp"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/all5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintTop_toBottomOf="@id/all05"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/groundDetails"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/all5"
+            app:layout_constraintRight_toLeftOf="@id/d9"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/ground"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s9"
+            app:layout_constraintTop_toBottomOf="@+id/all5"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/editGroundHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:ems="6"
                 android:inputType="numberDecimal"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:textColor="@color/ColorPrimary"
+                tools:ignore="Autofill,LabelFor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/all06"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/d9"
+            app:layout_constraintWidth_percent="1"
+            tools:ignore="MissingConstraints"
+            android:paddingTop="20dp"
+            android:visibility="gone">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/all6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="1"
+            app:layout_constraintTop_toBottomOf="@id/all06"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/wingTail"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/all6"
+            app:layout_constraintRight_toLeftOf="@id/d10"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/nacaDT"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s10"
+            app:layout_constraintTop_toBottomOf="@+id/all6"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/addnacaDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="6"
+                android:inputType="number"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                tools:ignore="Autofill,LabelFor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/d10"
+            app:layout_constraintRight_toLeftOf="@id/d11"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/chordT"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s11"
+            app:layout_constraintTop_toBottomOf="@+id/d10"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone"
+            >
+
+            <EditText
+                android:id="@+id/addChordT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="6"
+                android:inputType="numberDecimal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                tools:ignore="Autofill,LabelFor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/d11"
+            app:layout_constraintRight_toLeftOf="@id/d12"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/angleT"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s12"
+            app:layout_constraintTop_toBottomOf="@+id/d11"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone"
+            >
+
+            <EditText
+                android:id="@+id/editStaggerT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="6"
+                android:inputType="numberDecimal|numberSigned"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                tools:ignore="Autofill,LabelFor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/d12"
+            app:layout_constraintRight_toLeftOf="@id/d13"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/wingTailX"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d13"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s13"
+            app:layout_constraintTop_toBottomOf="@+id/d12"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/editWingTailX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="6"
+                android:inputType="numberDecimal"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                tools:ignore="Autofill,LabelFor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/d13"
+            app:layout_constraintRight_toLeftOf="@id/d14"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="viewStart"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:paddingTop="15dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="@string/wingTailY"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s14"
+            app:layout_constraintTop_toBottomOf="@+id/d13"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/editWingTailY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:ems="6"
+                android:inputType="numberDecimal|numberSigned"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/ColorPrimary"
+                tools:ignore="Autofill,LabelFor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/butt1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/d8"
+            app:layout_constraintTop_toBottomOf="@id/d14"
             app:layout_constraintLeft_toLeftOf="@id/activity_main"
             app:layout_constraintRight_toRightOf="@id/activity_main"
             tools:ignore="MissingConstraints">
 
             <Button
                 android:id="@+id/button1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
                 android:layout_marginTop="30dp"
                 android:textColor="@color/ColorPrimary"
                 app:layout_constraintTop_toTopOf="parent"
@@ -522,10 +999,64 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/butt2"
+            android:id="@+id/butt11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/butt1"
+            app:layout_constraintLeft_toLeftOf="@id/activity_main"
+            app:layout_constraintRight_toRightOf="@id/activity_main"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/ColorPrimary"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@string/buildThin"
+                android:enabled="true"
+                android:onClick="onClick"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/butt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/butt11"
+            app:layout_constraintLeft_toLeftOf="@id/activity_main"
+            app:layout_constraintRight_toRightOf="@id/activity_main"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/ColorPrimary"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@string/cpclcd"
+                android:onClick="onClick"
+                android:elevation="10dp"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/butt3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/butt2"
             app:layout_constraintLeft_toLeftOf="@id/activity_main"
             app:layout_constraintRight_toRightOf="@id/activity_main"
             tools:ignore="MissingConstraints"
@@ -533,16 +1064,45 @@
             >
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
                 android:textColor="@color/ColorPrimary"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:text="@string/title_activity_cl_alpha"
+                android:onClick="onClick"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/butt4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/butt3"
+            app:layout_constraintLeft_toLeftOf="@id/activity_main"
+            app:layout_constraintRight_toRightOf="@id/activity_main"
+            tools:ignore="MissingConstraints"
+
+            >
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="70dp"
+                android:layout_marginEnd="70dp"
+                android:textColor="@color/ColorPrimary"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="@string/title_activity_generate_dataset"
                 android:onClick="onClick"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
