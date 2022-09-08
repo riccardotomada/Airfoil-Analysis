@@ -75,8 +75,8 @@
     <string name="maxmaxcamberpos">Max 2° cifra</string>
     <string name="thicknessmin">Min 3° &amp; 4° cifre</string>
     <string name="thicknessmax">Max 3° &amp; 4° cifre</string>
-    <string name="aoamin">Min AOA</string>
-    <string name="aoamax">Max AOA</string>
+    <string name="aoamin">Min AOA [deg] </string>
+    <string name="aoamax">Max AOA [deg]</string>
     <string name="desliftcoeffmin">Min 1° cifra</string>
     <string name="desliftcoeffmax">Max 1° cifra</string>
     <string name="camberposmin">Min 2° &amp; 3° cifre</string>
@@ -96,4 +96,7 @@
     <string name="generdata">Generazione del dataset</string>
     <string name="waiting">Elaborazione in corso. Per favore, attendi fino al termine</string>
     <string name="generated">L\'indirizzo del dataset è: </string>
+    <string name="speed5">Velocità [m/s] </string>
+    <string name="check_speed">La velocità deve essere positiva</string>
+    <string name="check_comp">Velocità max = 100[m/s] per evitare effetti comprimibili</string>
 </resources>

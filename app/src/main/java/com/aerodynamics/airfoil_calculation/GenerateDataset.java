@@ -42,13 +42,13 @@ import java.util.stream.DoubleStream;
 public class GenerateDataset extends AppCompatActivity {
 
 	SwitchMaterial naca4digits, naca5digits;
-	ConstraintLayout all1, all2, s1, d1, s2, d2, s3, d3, s4, d4, s5, d5, s6, d6, s7, d7, s8, d8;
+	ConstraintLayout all1, all2, s1, d1, s2, d2, s3, d3, s4, d4, s4_, d4_, s5, d5, s6, d6, s7, d7, s8, d8, s9, d9;
 	EditText minMaxC, maxMaxC, minClDes, maxClDes, minMaxcPos4, maxMaxcPos4,minMaxcPos5,maxMaxcPos5,
-			 minThick4, maxThick4, minThick5, maxThick5, minAoa4, maxAoa4, minAoa5, maxAoa5;
+			 minThick4, maxThick4, minThick5, maxThick5, minAoa4, maxAoa4, minAoa5, maxAoa5, speeD4, speeD5;
 	String minfirstdig4, maxfirstdig4, minsecdig4, maxsecdig4, mintrqtdig4, maxtrqtdig4,
 		   minfirstdig5, maxfirstdig5, minsectrdig5, maxsectrdig5, minqtcin5, maxqtcin5;
 	String nacaid;
-	Double minaoa4, maxaoa4, minaoa5, maxaoa5;
+	Double minaoa4, maxaoa4, minaoa5, maxaoa5, speed4, speed5;
 	Button button;
 
 	@Override
@@ -79,6 +79,8 @@ public class GenerateDataset extends AppCompatActivity {
 		d3   = findViewById(R.id.d3);
 		s4   = findViewById(R.id.s4);
 		d4   = findViewById(R.id.d4);
+		s4_  = findViewById(R.id.s4_);
+		d4_  = findViewById(R.id.d4_);
 		s5   = findViewById(R.id.s5);
 		d5   = findViewById(R.id.d5);
 		s6   = findViewById(R.id.s6);
@@ -87,6 +89,8 @@ public class GenerateDataset extends AppCompatActivity {
 		d7   = findViewById(R.id.d7);
 		s8   = findViewById(R.id.s8);
 		d8   = findViewById(R.id.d8);
+		s9   = findViewById(R.id.s9);
+		d9   = findViewById(R.id.d9);
 
 		minMaxC = findViewById(R.id.editMinMaxCamber);
 		minMaxC.setHint("0");
@@ -104,6 +108,8 @@ public class GenerateDataset extends AppCompatActivity {
 		minAoa4.setHint("-8.0");
 		maxAoa4 = findViewById(R.id.editMaxAOA);
 		maxAoa4.setHint("8.0");
+		speeD4 = findViewById(R.id.editSpeed4);
+		speeD4.setHint("50.0");
 
 		minClDes = findViewById(R.id.editMinCL);
 		minClDes.setHint("1");
@@ -121,6 +127,8 @@ public class GenerateDataset extends AppCompatActivity {
 		minAoa5.setHint("-8.0");
 		maxAoa5 = findViewById(R.id.editMaxAOA5);
 		maxAoa5.setHint("8.0");
+		speeD5 = findViewById(R.id.editSpeed5);
+		speeD5.setHint("50.0");
 
 		naca4digits.setOnCheckedChangeListener((buttonView, isChecked) -> {
 			if (isChecked) {
@@ -139,6 +147,8 @@ public class GenerateDataset extends AppCompatActivity {
 				d3.setVisibility(View.VISIBLE);
 				s4.setVisibility(View.VISIBLE);
 				d4.setVisibility(View.VISIBLE);
+				s4_.setVisibility(View.VISIBLE);
+				d4_.setVisibility(View.VISIBLE);
 
 				all2.setVisibility(View.GONE);
 				s5.setVisibility(View.GONE);
@@ -149,6 +159,8 @@ public class GenerateDataset extends AppCompatActivity {
 				d7.setVisibility(View.GONE);
 				s8.setVisibility(View.GONE);
 				d8.setVisibility(View.GONE);
+				s9.setVisibility(View.GONE);
+				d9.setVisibility(View.GONE);
 			}
 		});
 		naca5digits.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -168,6 +180,8 @@ public class GenerateDataset extends AppCompatActivity {
 				d3.setVisibility(View.GONE);
 				s4.setVisibility(View.GONE);
 				d4.setVisibility(View.GONE);
+				s4_.setVisibility(View.GONE);
+				d4_.setVisibility(View.GONE);
 
 				all2.setVisibility(View.VISIBLE);
 				s5.setVisibility(View.VISIBLE);
@@ -178,6 +192,8 @@ public class GenerateDataset extends AppCompatActivity {
 				d7.setVisibility(View.VISIBLE);
 				s8.setVisibility(View.VISIBLE);
 				d8.setVisibility(View.VISIBLE);
+				s9.setVisibility(View.VISIBLE);
+				d9.setVisibility(View.VISIBLE);
 			}
 		});
 		if(!naca4digits.isChecked() && !naca5digits.isChecked()){
@@ -236,6 +252,10 @@ public class GenerateDataset extends AppCompatActivity {
 				maxaoa4 = 8.0;
 			} else
 				maxaoa4 = Double.parseDouble(maxAoa4.getText().toString());
+			if (speeD4.getText().toString().isEmpty()){
+				speed4 = 50.0;
+			} else
+				speed4 = Double.parseDouble(speeD4.getText().toString());
 		}
 		else if(naca5digits.isChecked()){
 
@@ -278,6 +298,11 @@ public class GenerateDataset extends AppCompatActivity {
 				maxaoa5 = 8.0;
 			} else
 				maxaoa5 = Double.parseDouble(maxAoa5.getText().toString());
+
+			if (speeD5.getText().toString().isEmpty()){
+				speed5 = 50.0;
+			} else
+				speed5 = Double.parseDouble(speeD4.getText().toString());
 		}
 
 		if (naca4digits.isChecked()) {
@@ -294,6 +319,10 @@ public class GenerateDataset extends AppCompatActivity {
 				Toast.makeText(this, R.string.aoamax, Toast.LENGTH_LONG).show();
 			} else if (minaoa4 > maxaoa4) {
 				Toast.makeText(this, R.string.aoa, Toast.LENGTH_LONG).show();
+			} else if (speed4 <= 0) {
+				Toast.makeText(this, R.string.check_speed, Toast.LENGTH_LONG).show();
+			} else if (speed4 >= 100) {
+				Toast.makeText(this, R.string.check_comp, Toast.LENGTH_LONG).show();
 			} else {
 
 				String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/CL_Dataset4digits.csv");
@@ -334,6 +363,10 @@ public class GenerateDataset extends AppCompatActivity {
 				Toast.makeText(this, R.string.aoamax, Toast.LENGTH_LONG).show();
 			} else if (minaoa5 > maxaoa5) {
 				Toast.makeText(this, R.string.aoa, Toast.LENGTH_LONG).show();
+			} else if (speed5 <= 0) {
+				Toast.makeText(this, R.string.check_speed, Toast.LENGTH_LONG).show();
+			} else if (speed5 >= 100) {
+				Toast.makeText(this, R.string.check_comp, Toast.LENGTH_LONG).show();
 			} else {
 
 				String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/CL_Dataset5digits.csv");
@@ -356,11 +389,11 @@ public class GenerateDataset extends AppCompatActivity {
 		}
 }
 
-public void generateDataset(String nacaid, Double aoa, String csv) {
+public void generateDataset(String nacaid, Double aoa, Double speed, String csv) {
 
 	double spd, pr, den;
 
-	spd = 10;
+	spd = speed;
 	pr = 103125; //Pa
 	den = 1.225; //kg/m3
 
@@ -492,6 +525,8 @@ public void generateDataset(String nacaid, Double aoa, String csv) {
 	//The following lines of code contain the implementation of the Thwaites method for the
 	//viscous flow corrections.
 
+	//Find the stagnation point
+
 	int n_stg = 0;
 	double csi_stg = 0.0;
 	int i_stg = 0;
@@ -500,26 +535,31 @@ public void generateDataset(String nacaid, Double aoa, String csv) {
 		if(vTiW[i]*vTiW[i+1]<=0) {
 			n_stg++;
 			i_stg = i;
-			csi_stg = -vTiW[i]/(vTiW[i+1] - vTiW[i]);
+			csi_stg = -vTiW[i]/(vTiW[i+1] - vTiW[i]); // coordinate along the airfoil of the stagnation point
 		}
 	}
 
+	// arc-length from the stagnation point
+
 	double[] s = new double[nelems];
 
-	s[i_stg+1] = csi_stg*(lenW[i_stg] + lenW[i_stg+1]) * 0.5;
-	s[i_stg] = (1.0-csi_stg) * (lenW[i_stg] + lenW[i_stg+1]) * 0.5;
+	s[i_stg+1] = csi_stg * (lenW[i_stg] + lenW[i_stg+1]) * 0.5;
+	s[i_stg] = (1.0 - csi_stg) * (lenW[i_stg] + lenW[i_stg+1]) * 0.5;
 
 	for(int i = i_stg+2; i < nelems; i++){
-		s[i] = s[i-1] + 0.5*(lenW[i] + lenW[i-1]);
+		s[i] = s[i-1] + 0.5 * (lenW[i] + lenW[i-1]);
 	}
 	for(int i = i_stg-1; i>-1; i--){
-		s[i] = s[i+1] + 0.5*(lenW[i] + lenW[i+1]);
+		s[i] = s[i+1] + 0.5 * (lenW[i] + lenW[i+1]);
 	}
 
-	double th = Math.acos(nversW[0][i_stg]*nversW[0][i_stg+1]+nversW[1][i_stg]*nversW[1][i_stg+1]);
-	double r0 = lenW[1]*Math.sin(th) + (lenW[0] + lenW[1]*Math.cos(th))/Math.tan(th);
-	double k = freeStream.v/r0;
-	double theta0 = Math.sqrt(0.075*freeStream.kin_visc/k);  //never used
+	// Initial condition of the momentum thickness
+	double th = Math.acos(nversW[0][i_stg] * nversW[0][i_stg + 1] + nversW[1][i_stg] * nversW[1][i_stg + 1]);
+	double r0 = lenW[1] * Math.sin(th) + (lenW[0] + lenW[1] * Math.cos(th)) / Math.tan(th);
+	double k = freeStream.v / r0;
+	double theta0 = Math.sqrt(0.075 * freeStream.kin_visc / k);  //never used
+
+	// Integrate Thwaites' equation in both directions
 
 	double[] Ue = new double[vTiW.length];
 	for(int i = 0; i<vTiW.length; i++){
@@ -537,58 +577,63 @@ public void generateDataset(String nacaid, Double aoa, String csv) {
 	double[] H					=		new double[nelems];
 	double[] delta				= 		new double[nelems];
 	double[] cf					= 		new double[nelems];
-	double[] UeThetaH1 			= 		new double[nelems];
-	double[] H1					= 		new double[nelems];
+	double[] UeThetaH1 			= 		new double[nelems]; // for turbulent b.l.
+	double[] H1					= 		new double[nelems]; // for turbulent b.l.
 
 	double[] Res				=		new double[Ue.length];
+
+	// Pressure and its derivatives along the surface
 	double[] P					=		new double[cPW.length];
-	for(int i = 0; i<Ue.length;i++){
-		Res[i] = Ue[i]*s[i] / freeStream.kin_visc;
-		P[i] = cPW[i]*(0.5*freeStream.rho*freeStream.v*freeStream.v);
+	for(int i = 0; i < Ue.length; i++){
+		Res[i] = Ue[i] * s[i] / freeStream.kin_visc;
+		P[i] = cPW[i] * (0.5 * freeStream.rho * Math.pow(freeStream.v, 2));
 	}
 
 	double[] dPdx			= 		new double[nelems];
 	double[] dUedx			= 		new double[nelems];
 
-	double Ptot = freeStream.P + 0.5*freeStream.rho * freeStream.v * freeStream.v;
+	double Ptot = freeStream.P + 0.5 * freeStream.rho * Math.pow(freeStream.v, 2);
 
-	dPdx[i_stg+1]	 = 	(P[i_stg+1] - Ptot) / (0.5*csi_stg*(lenW[i_stg]+ lenW[i_stg+1]));
-	dPdx[i_stg]		 = 	(P[i_stg] - Ptot) / (0.5*(1.0-csi_stg)*(lenW[i_stg]+ lenW[i_stg+1]));
-	dUedx[i_stg+1]	 = 	(Ue[i_stg+1] - 0.0) / (0.5*csi_stg*(lenW[i_stg]+ lenW[i_stg+1]));
-	dUedx[i_stg]	 = 	(Ue[i_stg] -   0.0) / (0.5*(1.0-csi_stg)*(lenW[i_stg]+ lenW[i_stg+1]));
+	dPdx[i_stg+1]	 = 	(P[i_stg+1] - Ptot) / (0.5 * csi_stg * (lenW[i_stg] + lenW[i_stg+1]));
+	dPdx[i_stg]		 = 	(P[i_stg] - Ptot) / (0.5 * (1.0 - csi_stg) * (lenW[i_stg] + lenW[i_stg+1]));
+	dUedx[i_stg+1]	 = 	(Ue[i_stg+1] - 0.0) / (0.5 * csi_stg * (lenW[i_stg] + lenW[i_stg+1]));
+	dUedx[i_stg]	 = 	(Ue[i_stg] -   0.0) / (0.5 * (1.0 - csi_stg) * (lenW[i_stg] + lenW[i_stg+1]));
 
-	theta2Ue6[i_stg+1] = 0.45*freeStream.kin_visc*Math.pow(Ue[i_stg+1],5.0)*
-			(0.25*csi_stg*(lenW[i_stg]+lenW[i_stg+1]));
-	theta2Ue6[i_stg]   = 0.45*freeStream.kin_visc*Math.pow(Ue[i_stg],5.0)*
-			(0.25*(1.0-csi_stg)*(lenW[i_stg]+lenW[i_stg+1]));
-	theta[i_stg+1]     = Math.sqrt(theta2Ue6[i_stg+1]/Math.pow(Ue[i_stg+1],6.0));
-	theta[i_stg]       = Math.sqrt(theta2Ue6[i_stg]/Math.pow(Ue[i_stg],6.0));
-	ReTheta[i_stg+1]   = Ue[i_stg+1]*theta[i_stg+1]/freeStream.kin_visc;
-	ReTheta[i_stg]     = Ue[i_stg]*theta[i_stg]/freeStream.kin_visc;
-	lambda[i_stg+1]    = Math.pow(theta[i_stg+1],2.0)*dUedx[i_stg+1]/freeStream.kin_visc;
-	lambda[i_stg]      = Math.pow(theta[i_stg],2.0)*dUedx[i_stg]/freeStream.kin_visc;
-	ell[i_stg+1] 	   = myGlobal.thwaites_ell(lambda[i_stg+1]);
+	// Initial conditions
+
+	theta2Ue6[i_stg + 1] = 0.45 * freeStream.kin_visc * Math.pow(Ue[i_stg+1], 5.0) *
+			(0.25 * csi_stg * (lenW[i_stg] + lenW[i_stg + 1]));
+	theta2Ue6[i_stg]   = 0.45 * freeStream.kin_visc * Math.pow(Ue[i_stg], 5.0)*
+			(0.25 * (1.0 - csi_stg) * (lenW[i_stg] + lenW[i_stg + 1]));
+	theta[i_stg + 1]   = Math.sqrt(theta2Ue6[i_stg + 1] / Math.pow(Ue[i_stg + 1], 6.0));
+	theta[i_stg]       = Math.sqrt(theta2Ue6[i_stg] / Math.pow(Ue[i_stg], 6.0));
+	ReTheta[i_stg+1]   = Ue[i_stg+1] * theta[i_stg+1] / freeStream.kin_visc;
+	ReTheta[i_stg]     = Ue[i_stg] * theta[i_stg] / freeStream.kin_visc;
+	lambda[i_stg+1]    = Math.pow(theta[i_stg + 1], 2.0) * dUedx[i_stg + 1] / freeStream.kin_visc;
+	lambda[i_stg]      = Math.pow(theta[i_stg], 2.0) * dUedx[i_stg] / freeStream.kin_visc;
+	ell[i_stg+1] 	   = myGlobal.thwaites_ell(lambda[i_stg + 1]);
 	ell[i_stg] 	       = myGlobal.thwaites_ell(lambda[i_stg]);
-	H[i_stg+1]		   = myGlobal.thwaites_H(lambda[i_stg+1]);
+	H[i_stg+1]		   = myGlobal.thwaites_H(lambda[i_stg + 1]);
 	H[i_stg]		   = myGlobal.thwaites_H(lambda[i_stg]);
-	delta[i_stg+1]     = theta[i_stg+1] * H[i_stg+1];
+	delta[i_stg + 1]   = theta[i_stg + 1] * H[i_stg + 1];
 	delta[i_stg]       = theta[i_stg] * H[i_stg];
-	cf[i_stg+1]		   = 2.0*ell[i_stg+1]/ReTheta[i_stg+1];
-	cf[i_stg]		   = 2.0*ell[i_stg]/ReTheta[i_stg];
+	cf[i_stg + 1]      = 2.0 * ell[i_stg + 1] / ReTheta[i_stg + 1];
+	cf[i_stg]		   = 2.0 * ell[i_stg] / ReTheta[i_stg];
 
+	// Integrate equation
 
 	String regime = "laminar";
 	String transition = "no";
 
-	for(int i = i_stg+2; i<nelems; i++){
+	for(int i = i_stg + 2; i<nelems; i++){
 
-		if(i<nelems-1){
-			dPdx[i]  = (P[i+1] - P[i-1]) / (0.5 * (lenW[i+1] + lenW[i-1]) + lenW[i]);
-			dUedx[i] = ( Ue[i+1] - Ue[i-1] ) / ( 0.5 * ( lenW[i+1] + lenW[i-1] ) + lenW[i]);
+		if(i < nelems - 1){
+			dPdx[i]  = (P[i + 1] - P[i - 1]) / (0.5 * (lenW[i + 1] + lenW[i - 1]) + lenW[i]);
+			dUedx[i] = (Ue[i + 1] - Ue[i - 1]) / (0.5 * ( lenW[i + 1] + lenW[i - 1] ) + lenW[i]);
 		}
 		else{
-			dPdx[i]  = (P[i] - P[i-1]) / (0.5 * (lenW[i] + lenW[i-1]));
-			dUedx[i] = ( Ue[i] - Ue[i-1] ) / ( 0.5 * ( lenW[i] + lenW[i-1] ));
+			dPdx[i]  = (P[i] - P[i - 1]) / (0.5 * (lenW[i] + lenW[i - 1]));
+			dUedx[i] = (Ue[i] - Ue[i - 1]) / ( 0.5 * ( lenW[i] + lenW[i - 1] ));
 		}
 
 		if(regime.equals("laminar")) {
@@ -603,6 +648,7 @@ public void generateDataset(String nacaid, Double aoa, String csv) {
 			delta[i]     = theta[i] * H[i];
 			cf[i]        = 2.0 * ell[i] / ReTheta[i];
 
+			// Michel's criterion for transition
 			if (ReTheta[i] > 1.174 * (1.0 + 22400.0 / Res[i]) * Math.pow(Res[i], 0.46)) {
 				regime = "turbulent";
 				transition = "transition";
@@ -634,14 +680,14 @@ public void generateDataset(String nacaid, Double aoa, String csv) {
 	regime = "laminar";
 	transition = "no";
 
-	for(int i = i_stg-1;i>-1;i--){
-		if(i>0){
-			dPdx[i]  = (P[i-1]-P[i+1])/(0.5*(lenW[i+1]+lenW[i-1])+lenW[i]);
-			dUedx[i] = (Ue[i-1]-Ue[i+1])/(0.5*(lenW[i+1]+lenW[i-1])+lenW[i]);
+	for(int i = i_stg - 1; i > -1; i--){
+		if(i > 0){
+			dPdx[i]  = (P[i - 1] - P[i + 1]) / (0.5 * (lenW[i + 1] + lenW[i - 1]) + lenW[i]);
+			dUedx[i] = (Ue[i - 1] - Ue[i + 1]) / (0.5 * (lenW[i+1] + lenW[i - 1]) + lenW[i]);
 		}
 		else{
-			dPdx[i]  = (P[i]-P[i+1])/(0.5*(lenW[i]+lenW[i+1]));
-			dUedx[i] = (Ue[i]-Ue[i+1])/(0.5*(lenW[i]+lenW[i+1]));
+			dPdx[i]  = (P[i] - P[i+1]) / (0.5 * (lenW[i] + lenW[i+1]));
+			dUedx[i] = (Ue[i] - Ue[i+1]) / (0.5*(lenW[i] + lenW[i+1]));
 		}
 
 		if(regime.equals("laminar")){
@@ -655,6 +701,7 @@ public void generateDataset(String nacaid, Double aoa, String csv) {
 			delta[i]     = theta[i] * H[i];
 			cf[i]        = 2.0 * ell[i] / ReTheta[i];
 
+			// Michel's criterion for transition
 			if (ReTheta[i] > 1.174 * (1.0 + 22400.0 / Res[i]) * Math.pow(Res[i], 0.46)) {
 				regime        = "turbulent";
 				transition    = "transition";
@@ -682,56 +729,58 @@ public void generateDataset(String nacaid, Double aoa, String csv) {
 		}
 	}
 
+	// Drag
+
 	double[] tauW = new double[cf.length];
 
-	for(int i = 0; i<cf.length;i++){
-		tauW[i] = 0.5*freeStream.rho*Math.pow(freeStream.v,2)*cf[i];
+	for(int i = 0; i < cf.length; i++){
+		tauW[i] = 0.5 * freeStream.rho * Math.pow(freeStream.v, 2) * cf[i];
 	}
 
 	double[][] temp = new double[2][tauW.length];
 	double[][] dF_visc = new double[2][tauW.length];
 
-	for(int i = 0; i<tauW.length;i++){
-		temp[0][i] = tauW[i]*lenW[i]*vTiW[i]/Ue[i];
-		temp[1][i] = tauW[i]*lenW[i]*vTiW[i]/Ue[i];
+	for(int i = 0; i < tauW.length; i++){
+		temp[0][i] = tauW[i] * lenW[i] * vTiW[i] / Ue[i];
+		temp[1][i] = tauW[i] * lenW[i] * vTiW[i] / Ue[i];
 	}
 
-	for(int i = 0; i<tauW.length;i++){
-		dF_visc[0][i] = temp[0][i]*tversW[0][i];
-		dF_visc[1][i] = temp[1][i]*tversW[1][i];
+	for(int i = 0; i <tauW.length; i++){
+		dF_visc[0][i] = temp[0][i] * tversW[0][i];
+		dF_visc[1][i] = temp[1][i] * tversW[1][i];
 	}
 	double[] F_visc = new double[2];
 
-	F_visc[0] = DoubleStream.of(dF_visc[0]).sum()/airfoilW.chord;
-	F_visc[1] = DoubleStream.of(dF_visc[1]).sum()/airfoilW.chord;
+	F_visc[0] = DoubleStream.of(dF_visc[0]).sum() / airfoilW.chord;
+	F_visc[1] = DoubleStream.of(dF_visc[1]).sum() / airfoilW.chord;
 
-	double L_visc = -F_visc[0]*Math.sin(freeStream.alpha)+F_visc[1]*Math.cos(freeStream.alpha);
-	double D_visc = F_visc[0]*Math.cos(freeStream.alpha) + F_visc[1]*Math.sin(freeStream.alpha);
+	double L_visc = -F_visc[0] * Math.sin(freeStream.alpha) + F_visc[1] * Math.cos(freeStream.alpha);
+	double D_visc = F_visc[0] * Math.cos(freeStream.alpha) + F_visc[1] * Math.sin(freeStream.alpha);
 
 	double[][] temp0 = new double[2][tauW.length];
 	double[][] dF_Pres = new double[2][tauW.length];
 
 	for(int i = 0; i<tauW.length;i++){
-		temp0[0][i] = -P[i]*lenW[i];
-		temp0[1][i] = -P[i]*lenW[i];
+		temp0[0][i] = -P[i] * lenW[i];
+		temp0[1][i] = -P[i] * lenW[i];
 	}
 	for(int i = 0; i<tauW.length;i++){
-		dF_Pres[0][i] = temp0[0][i]*nversW[0][i];
-		dF_Pres[1][i] = temp0[1][i]*nversW[1][i];
+		dF_Pres[0][i] = temp0[0][i] * nversW[0][i];
+		dF_Pres[1][i] = temp0[1][i] * nversW[1][i];
 	}
 	double[] F_pres = new double[2];
 
-	F_pres[0] = DoubleStream.of(dF_Pres[0]).sum()/airfoilW.chord;
-	F_pres[1] = DoubleStream.of(dF_Pres[1]).sum()/airfoilW.chord;
+	F_pres[0] = DoubleStream.of(dF_Pres[0]).sum() / airfoilW.chord;
+	F_pres[1] = DoubleStream.of(dF_Pres[1]).sum() / airfoilW.chord;
 
-	double L_pres = -F_pres[0]*Math.sin(freeStream.alpha)+F_pres[1]*Math.cos(freeStream.alpha);
-	double D_pres = F_pres[0]*Math.cos(freeStream.alpha) + F_pres[1]*Math.sin(freeStream.alpha);
+	double L_pres = -F_pres[0] * Math.sin(freeStream.alpha) + F_pres[1] * Math.cos(freeStream.alpha);
+	double D_pres = F_pres[0] * Math.cos(freeStream.alpha) + F_pres[1] * Math.sin(freeStream.alpha);
 
 	double L = L_pres + L_visc;
 	double D = D_pres + D_visc;
 
-	double cL = L/(0.5*freeStream.rho*freeStream.v*freeStream.v);
-	double cD = D/(0.5*freeStream.rho*freeStream.v*freeStream.v);
+	double cL = L / (0.5 * freeStream.rho * Math.pow(freeStream.v, 2));
+	double cD = D / (0.5 * freeStream.rho * Math.pow(freeStream.v, 2));
 
 
 	CSVWriter writer = null;
@@ -791,7 +840,7 @@ private class MyTask extends AsyncTask<String, Integer, String>{
 							} else {
 								nacaid = "NACA" + dg1 + dg2 + dg34;
 							}
-							generateDataset(nacaid, aoa, csv);
+							generateDataset(nacaid, aoa, speed4, csv);
 							count++;
 							publishProgress((int) ((count / (float) total) * 100));
 
@@ -822,7 +871,7 @@ private class MyTask extends AsyncTask<String, Integer, String>{
 							} else {
 								nacaid = "NACA" + dg1 + dg23 + dg45;
 							}
-							generateDataset(nacaid, aoa, csv);
+							generateDataset(nacaid, aoa, speed5, csv);
 							count++;
 							publishProgress((int) ((count / (float) total) * 100));
 

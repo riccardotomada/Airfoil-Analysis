@@ -780,6 +780,9 @@ public class BuildCoefficient extends AppCompatActivity {
 			//The following lines of code contain the implementation of the Thwaites method for the
 			//viscous flow corrections.
 
+
+			//Find the stagnation point
+
 			int n_stg = 0;
 			double csi_stg = 0.0;
 			int i_stg = 0;
@@ -788,26 +791,35 @@ public class BuildCoefficient extends AppCompatActivity {
 				if(vTiW[i]*vTiW[i+1]<=0) {
 					n_stg++;
 					i_stg = i;
-					csi_stg = -vTiW[i]/(vTiW[i+1] - vTiW[i]);
+					csi_stg = -vTiW[i]/(vTiW[i+1] - vTiW[i]); // coordinate along the airfoil of the stagnation point
 				}
 			}
 
+			if(n_stg != 1)
+				Toast.makeText(BuildCoefficient.this, "More than one stg point found on the airfoil. Something wrong happened", Toast.LENGTH_LONG).show();
+
+
+			// arc-length from the stagnation point
+
 			double[] s = new double[nelems];
 
-			s[i_stg+1] = csi_stg*(lenW[i_stg] + lenW[i_stg+1]) * 0.5;
-			s[i_stg] = (1.0-csi_stg) * (lenW[i_stg] + lenW[i_stg+1]) * 0.5;
+			s[i_stg+1] = csi_stg * (lenW[i_stg] + lenW[i_stg+1]) * 0.5;
+			s[i_stg] = (1.0 - csi_stg) * (lenW[i_stg] + lenW[i_stg+1]) * 0.5;
 
 			for(int i = i_stg+2; i < nelems; i++){
-				s[i] = s[i-1] + 0.5*(lenW[i] + lenW[i-1]);
+				s[i] = s[i-1] + 0.5 * (lenW[i] + lenW[i-1]);
 			}
 			for(int i = i_stg-1; i>-1; i--){
-				s[i] = s[i+1] + 0.5*(lenW[i] + lenW[i+1]);
+				s[i] = s[i+1] + 0.5 * (lenW[i] + lenW[i+1]);
 			}
 
-			double th = Math.acos(nversW[0][i_stg]*nversW[0][i_stg+1]+nversW[1][i_stg]*nversW[1][i_stg+1]);
-			double r0 = lenW[1]*Math.sin(th) + (lenW[0] + lenW[1]*Math.cos(th))/Math.tan(th);
-			double k = freeStream.v/r0;
-			double theta0 = Math.sqrt(0.075*freeStream.kin_visc/k);  //never used
+			// Initial condition of the momentum thickness
+			double th = Math.acos(nversW[0][i_stg] * nversW[0][i_stg + 1] + nversW[1][i_stg] * nversW[1][i_stg + 1]);
+			double r0 = lenW[1] * Math.sin(th) + (lenW[0] + lenW[1] * Math.cos(th)) / Math.tan(th);
+			double k = freeStream.v / r0;
+			double theta0 = Math.sqrt(0.075 * freeStream.kin_visc / k);  //never used
+
+			// Integrate Thwaites' equation in both directions
 
 			double[] Ue = new double[vTiW.length];
 			for(int i = 0; i<vTiW.length; i++){
@@ -825,58 +837,63 @@ public class BuildCoefficient extends AppCompatActivity {
 			double[] H					=		new double[nelems];
 			double[] delta				= 		new double[nelems];
 			double[] cf					= 		new double[nelems];
-			double[] UeThetaH1 			= 		new double[nelems];
-			double[] H1					= 		new double[nelems];
+			double[] UeThetaH1 			= 		new double[nelems]; // for turbulent b.l.
+			double[] H1					= 		new double[nelems]; // for turbulent b.l.
 
 			double[] Res				=		new double[Ue.length];
+
+			// Pressure and its derivatives along the surface
 			double[] P					=		new double[cPW.length];
-			for(int i = 0; i<Ue.length;i++){
-				Res[i] = Ue[i]*s[i] / freeStream.kin_visc;
-				P[i] = cPW[i]*(0.5*freeStream.rho*freeStream.v*freeStream.v);
+			for(int i = 0; i < Ue.length; i++){
+				Res[i] = Ue[i] * s[i] / freeStream.kin_visc;
+				P[i] = cPW[i] * (0.5 * freeStream.rho * Math.pow(freeStream.v, 2));
 			}
 
 			double[] dPdx			= 		new double[nelems];
 			double[] dUedx			= 		new double[nelems];
 
-			double Ptot = freeStream.P + 0.5*freeStream.rho * freeStream.v * freeStream.v;
+			double Ptot = freeStream.P + 0.5 * freeStream.rho * Math.pow(freeStream.v, 2);
 
-			dPdx[i_stg+1]	 = 	(P[i_stg+1] - Ptot) / (0.5*csi_stg*(lenW[i_stg]+ lenW[i_stg+1]));
-			dPdx[i_stg]		 = 	(P[i_stg] - Ptot) / (0.5*(1.0-csi_stg)*(lenW[i_stg]+ lenW[i_stg+1]));
-			dUedx[i_stg+1]	 = 	(Ue[i_stg+1] - 0.0) / (0.5*csi_stg*(lenW[i_stg]+ lenW[i_stg+1]));
-			dUedx[i_stg]	 = 	(Ue[i_stg] -   0.0) / (0.5*(1.0-csi_stg)*(lenW[i_stg]+ lenW[i_stg+1]));
+			dPdx[i_stg+1]	 = 	(P[i_stg+1] - Ptot) / (0.5 * csi_stg * (lenW[i_stg] + lenW[i_stg+1]));
+			dPdx[i_stg]		 = 	(P[i_stg] - Ptot) / (0.5 * (1.0 - csi_stg) * (lenW[i_stg] + lenW[i_stg+1]));
+			dUedx[i_stg+1]	 = 	(Ue[i_stg+1] - 0.0) / (0.5 * csi_stg * (lenW[i_stg] + lenW[i_stg+1]));
+			dUedx[i_stg]	 = 	(Ue[i_stg] -   0.0) / (0.5 * (1.0 - csi_stg) * (lenW[i_stg] + lenW[i_stg+1]));
 
-			theta2Ue6[i_stg+1] = 0.45*freeStream.kin_visc*Math.pow(Ue[i_stg+1],5.0)*
-					(0.25*csi_stg*(lenW[i_stg]+lenW[i_stg+1]));
-			theta2Ue6[i_stg]   = 0.45*freeStream.kin_visc*Math.pow(Ue[i_stg],5.0)*
-					(0.25*(1.0-csi_stg)*(lenW[i_stg]+lenW[i_stg+1]));
-			theta[i_stg+1]     = Math.sqrt(theta2Ue6[i_stg+1]/Math.pow(Ue[i_stg+1],6.0));
-			theta[i_stg]       = Math.sqrt(theta2Ue6[i_stg]/Math.pow(Ue[i_stg],6.0));
-			ReTheta[i_stg+1]   = Ue[i_stg+1]*theta[i_stg+1]/freeStream.kin_visc;
-			ReTheta[i_stg]     = Ue[i_stg]*theta[i_stg]/freeStream.kin_visc;
-			lambda[i_stg+1]    = Math.pow(theta[i_stg+1],2.0)*dUedx[i_stg+1]/freeStream.kin_visc;
-			lambda[i_stg]      = Math.pow(theta[i_stg],2.0)*dUedx[i_stg]/freeStream.kin_visc;
-			ell[i_stg+1] 	   = myGlobal.thwaites_ell(lambda[i_stg+1]);
+			// Initial conditions
+
+			theta2Ue6[i_stg + 1] = 0.45 * freeStream.kin_visc * Math.pow(Ue[i_stg+1], 5.0) *
+					(0.25 * csi_stg * (lenW[i_stg] + lenW[i_stg + 1]));
+			theta2Ue6[i_stg]   = 0.45 * freeStream.kin_visc * Math.pow(Ue[i_stg], 5.0)*
+					(0.25 * (1.0 - csi_stg) * (lenW[i_stg] + lenW[i_stg + 1]));
+			theta[i_stg + 1]   = Math.sqrt(theta2Ue6[i_stg + 1] / Math.pow(Ue[i_stg + 1], 6.0));
+			theta[i_stg]       = Math.sqrt(theta2Ue6[i_stg] / Math.pow(Ue[i_stg], 6.0));
+			ReTheta[i_stg+1]   = Ue[i_stg+1] * theta[i_stg+1] / freeStream.kin_visc;
+			ReTheta[i_stg]     = Ue[i_stg] * theta[i_stg] / freeStream.kin_visc;
+			lambda[i_stg+1]    = Math.pow(theta[i_stg + 1], 2.0) * dUedx[i_stg + 1] / freeStream.kin_visc;
+			lambda[i_stg]      = Math.pow(theta[i_stg], 2.0) * dUedx[i_stg] / freeStream.kin_visc;
+			ell[i_stg+1] 	   = myGlobal.thwaites_ell(lambda[i_stg + 1]);
 			ell[i_stg] 	       = myGlobal.thwaites_ell(lambda[i_stg]);
-			H[i_stg+1]		   = myGlobal.thwaites_H(lambda[i_stg+1]);
+			H[i_stg+1]		   = myGlobal.thwaites_H(lambda[i_stg + 1]);
 			H[i_stg]		   = myGlobal.thwaites_H(lambda[i_stg]);
-			delta[i_stg+1]     = theta[i_stg+1] * H[i_stg+1];
+			delta[i_stg + 1]   = theta[i_stg + 1] * H[i_stg + 1];
 			delta[i_stg]       = theta[i_stg] * H[i_stg];
-			cf[i_stg+1]		   = 2.0*ell[i_stg+1]/ReTheta[i_stg+1];
-			cf[i_stg]		   = 2.0*ell[i_stg]/ReTheta[i_stg];
+			cf[i_stg + 1]      = 2.0 * ell[i_stg + 1] / ReTheta[i_stg + 1];
+			cf[i_stg]		   = 2.0 * ell[i_stg] / ReTheta[i_stg];
 
+			// Integrate equation
 
 			String regime = "laminar";
 			String transition = "no";
 
-			for(int i = i_stg+2; i<nelems; i++){
+			for(int i = i_stg + 2; i<nelems; i++){
 
-				if(i<nelems-1){
-					dPdx[i]  = (P[i+1] - P[i-1]) / (0.5 * (lenW[i+1] + lenW[i-1]) + lenW[i]);
-					dUedx[i] = ( Ue[i+1] - Ue[i-1] ) / ( 0.5 * ( lenW[i+1] + lenW[i-1] ) + lenW[i]);
+				if(i < nelems - 1){
+					dPdx[i]  = (P[i + 1] - P[i - 1]) / (0.5 * (lenW[i + 1] + lenW[i - 1]) + lenW[i]);
+					dUedx[i] = (Ue[i + 1] - Ue[i - 1]) / (0.5 * ( lenW[i + 1] + lenW[i - 1] ) + lenW[i]);
 				}
 				else{
-					dPdx[i]  = (P[i] - P[i-1]) / (0.5 * (lenW[i] + lenW[i-1]));
-					dUedx[i] = ( Ue[i] - Ue[i-1] ) / ( 0.5 * ( lenW[i] + lenW[i-1] ));
+					dPdx[i]  = (P[i] - P[i - 1]) / (0.5 * (lenW[i] + lenW[i - 1]));
+					dUedx[i] = (Ue[i] - Ue[i - 1]) / ( 0.5 * ( lenW[i] + lenW[i - 1] ));
 				}
 
 				if(regime.equals("laminar")) {
@@ -891,6 +908,7 @@ public class BuildCoefficient extends AppCompatActivity {
 					delta[i]     = theta[i] * H[i];
 					cf[i]        = 2.0 * ell[i] / ReTheta[i];
 
+					// Michel's criterion for transition
 					if (ReTheta[i] > 1.174 * (1.0 + 22400.0 / Res[i]) * Math.pow(Res[i], 0.46)) {
 						regime = "turbulent";
 						transition = "transition";
@@ -922,14 +940,14 @@ public class BuildCoefficient extends AppCompatActivity {
 			regime = "laminar";
 			transition = "no";
 
-			for(int i = i_stg-1;i>-1;i--){
-				if(i>0){
-					dPdx[i]  = (P[i-1]-P[i+1])/(0.5*(lenW[i+1]+lenW[i-1])+lenW[i]);
-					dUedx[i] = (Ue[i-1]-Ue[i+1])/(0.5*(lenW[i+1]+lenW[i-1])+lenW[i]);
+			for(int i = i_stg - 1; i > -1; i--){
+				if(i > 0){
+					dPdx[i]  = (P[i - 1] - P[i + 1]) / (0.5 * (lenW[i + 1] + lenW[i - 1]) + lenW[i]);
+					dUedx[i] = (Ue[i - 1] - Ue[i + 1]) / (0.5 * (lenW[i+1] + lenW[i - 1]) + lenW[i]);
 				}
 				else{
-					dPdx[i]  = (P[i]-P[i+1])/(0.5*(lenW[i]+lenW[i+1]));
-					dUedx[i] = (Ue[i]-Ue[i+1])/(0.5*(lenW[i]+lenW[i+1]));
+					dPdx[i]  = (P[i] - P[i+1]) / (0.5 * (lenW[i] + lenW[i+1]));
+					dUedx[i] = (Ue[i] - Ue[i+1]) / (0.5*(lenW[i] + lenW[i+1]));
 				}
 
 				if(regime.equals("laminar")){
@@ -943,6 +961,7 @@ public class BuildCoefficient extends AppCompatActivity {
 					delta[i]     = theta[i] * H[i];
 					cf[i]        = 2.0 * ell[i] / ReTheta[i];
 
+					// Michel's criterion for transition
 					if (ReTheta[i] > 1.174 * (1.0 + 22400.0 / Res[i]) * Math.pow(Res[i], 0.46)) {
 						regime        = "turbulent";
 						transition    = "transition";
@@ -970,56 +989,58 @@ public class BuildCoefficient extends AppCompatActivity {
 				}
 			}
 
+			// Drag
+
 			double[] tauW = new double[cf.length];
 
-			for(int i = 0; i<cf.length;i++){
-				tauW[i] = 0.5*freeStream.rho*Math.pow(freeStream.v,2)*cf[i];
+			for(int i = 0; i < cf.length; i++){
+				tauW[i] = 0.5 * freeStream.rho * Math.pow(freeStream.v, 2) * cf[i];
 			}
 
 			double[][] temp = new double[2][tauW.length];
 			double[][] dF_visc = new double[2][tauW.length];
 
-			for(int i = 0; i<tauW.length;i++){
-				temp[0][i] = tauW[i]*lenW[i]*vTiW[i]/Ue[i];
-				temp[1][i] = tauW[i]*lenW[i]*vTiW[i]/Ue[i];
+			for(int i = 0; i < tauW.length; i++){
+				temp[0][i] = tauW[i] * lenW[i] * vTiW[i] / Ue[i];
+				temp[1][i] = tauW[i] * lenW[i] * vTiW[i] / Ue[i];
 			}
 
-			for(int i = 0; i<tauW.length;i++){
-				dF_visc[0][i] = temp[0][i]*tversW[0][i];
-				dF_visc[1][i] = temp[1][i]*tversW[1][i];
+			for(int i = 0; i <tauW.length; i++){
+				dF_visc[0][i] = temp[0][i] * tversW[0][i];
+				dF_visc[1][i] = temp[1][i] * tversW[1][i];
 			}
 			double[] F_visc = new double[2];
 
-			F_visc[0] = DoubleStream.of(dF_visc[0]).sum()/airfoilW.chord;
-			F_visc[1] = DoubleStream.of(dF_visc[1]).sum()/airfoilW.chord;
+			F_visc[0] = DoubleStream.of(dF_visc[0]).sum() / airfoilW.chord;
+			F_visc[1] = DoubleStream.of(dF_visc[1]).sum() / airfoilW.chord;
 
-			double L_visc = -F_visc[0]*Math.sin(freeStream.alpha)+F_visc[1]*Math.cos(freeStream.alpha);
-			double D_visc = F_visc[0]*Math.cos(freeStream.alpha) + F_visc[1]*Math.sin(freeStream.alpha);
+			double L_visc = -F_visc[0] * Math.sin(freeStream.alpha) + F_visc[1] * Math.cos(freeStream.alpha);
+			double D_visc = F_visc[0] * Math.cos(freeStream.alpha) + F_visc[1] * Math.sin(freeStream.alpha);
 
 			double[][] temp0 = new double[2][tauW.length];
 			double[][] dF_Pres = new double[2][tauW.length];
 
 			for(int i = 0; i<tauW.length;i++){
-				temp0[0][i] = -P[i]*lenW[i];
-				temp0[1][i] = -P[i]*lenW[i];
+				temp0[0][i] = -P[i] * lenW[i];
+				temp0[1][i] = -P[i] * lenW[i];
 			}
 			for(int i = 0; i<tauW.length;i++){
-				dF_Pres[0][i] = temp0[0][i]*nversW[0][i];
-				dF_Pres[1][i] = temp0[1][i]*nversW[1][i];
+				dF_Pres[0][i] = temp0[0][i] * nversW[0][i];
+				dF_Pres[1][i] = temp0[1][i] * nversW[1][i];
 			}
 			double[] F_pres = new double[2];
 
-			F_pres[0] = DoubleStream.of(dF_Pres[0]).sum()/airfoilW.chord;
-			F_pres[1] = DoubleStream.of(dF_Pres[1]).sum()/airfoilW.chord;
+			F_pres[0] = DoubleStream.of(dF_Pres[0]).sum() / airfoilW.chord;
+			F_pres[1] = DoubleStream.of(dF_Pres[1]).sum() / airfoilW.chord;
 
-			double L_pres = -F_pres[0]*Math.sin(freeStream.alpha)+F_pres[1]*Math.cos(freeStream.alpha);
-			double D_pres = F_pres[0]*Math.cos(freeStream.alpha) + F_pres[1]*Math.sin(freeStream.alpha);
+			double L_pres = -F_pres[0] * Math.sin(freeStream.alpha) + F_pres[1] * Math.cos(freeStream.alpha);
+			double D_pres = F_pres[0] * Math.cos(freeStream.alpha) + F_pres[1] * Math.sin(freeStream.alpha);
 
 			double L = L_pres + L_visc;
 			double D = D_pres + D_visc;
 
-			double cL = L/(0.5*freeStream.rho*freeStream.v*freeStream.v);
-			double cD = D/(0.5*freeStream.rho*freeStream.v*freeStream.v);
+			double cL = L / (0.5 * freeStream.rho * Math.pow(freeStream.v, 2));
+			double cD = D / (0.5 * freeStream.rho * Math.pow(freeStream.v, 2));
 
 			if(isWT){
 				n_stg = 0;
@@ -1274,7 +1295,7 @@ public class BuildCoefficient extends AppCompatActivity {
 
 
 
-			//Print the following results: CL, CLKJ, Cm CL_thwaites, CD_thwaites
+			//Print the following results: CL, CLKJ, Cm, CL_thwaites, CD_thwaites
 
 			TextView cltext = findViewById(R.id.textClvalue);
 			cltext.setText(String.format("%.5f", cl) + " [-]");

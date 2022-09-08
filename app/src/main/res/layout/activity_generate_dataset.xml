@@ -577,12 +577,97 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s4_"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/s4"
+            app:layout_constraintRight_toLeftOf="@id/d4_"
+            tools:ignore="MissingConstraints"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/s41_"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintRight_toLeftOf="@id/s42_"
+                tools:ignore="MissingConstraints"
+                >
+                <TextView
+                    android:id="@+id/speed4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:paddingTop="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/speed5"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/s42_"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintRight_toLeftOf="@id/s41_"
+                tools:ignore="MissingConstraints"
+                >
+
+                <EditText
+                    android:id="@+id/editSpeed4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="6"
+                    android:inputType="numberSigned|numberDecimal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/ColorPrimary"
+                    tools:ignore="Autofill,LabelFor" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d4_"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s4_"
+            app:layout_constraintTop_toBottomOf="@+id/d4"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/d41_"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintRight_toLeftOf="@id/d42_"
+                tools:ignore="MissingConstraints"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/d42_"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintRight_toLeftOf="@id/d41_"
+                tools:ignore="MissingConstraints"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/all2"
             android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintWidth_percent="1"
-            app:layout_constraintTop_toBottomOf="@id/s4"
+            app:layout_constraintTop_toBottomOf="@id/s4_"
             tools:ignore="MissingConstraints"
             >
 
@@ -1046,10 +1131,95 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/s9"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toBottomOf="@id/s8"
+            app:layout_constraintRight_toLeftOf="@id/d9"
+            tools:ignore="MissingConstraints"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/s91"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintRight_toLeftOf="@id/s92"
+                tools:ignore="MissingConstraints"
+                >
+                <TextView
+                    android:id="@+id/speed5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:paddingTop="15dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/speed5"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/s92"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintRight_toLeftOf="@id/s91"
+                tools:ignore="MissingConstraints"
+                >
+
+                <EditText
+                    android:id="@+id/editSpeed5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="6"
+                    android:inputType="numberSigned|numberDecimal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="@color/ColorPrimary"
+                    tools:ignore="Autofill,LabelFor" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/d9"
+            android:visibility="gone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            app:layout_constraintLeft_toRightOf="@id/s9"
+            app:layout_constraintTop_toBottomOf="@+id/d8"
+            app:layout_constraintWidth_percent="0.5"
+            tools:ignore="MissingConstraints">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/d91"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintRight_toLeftOf="@id/d92"
+                tools:ignore="MissingConstraints"
+            />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/d92"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintWidth_percent="0.5"
+                app:layout_constraintRight_toLeftOf="@id/d91"
+                tools:ignore="MissingConstraints"
+               />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/butt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/d8"
+            app:layout_constraintTop_toBottomOf="@id/s9"
             tools:ignore="MissingConstraints"
             >
 
