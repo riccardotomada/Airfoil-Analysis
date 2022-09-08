@@ -2,12 +2,7 @@ Airfoil Analysis is a tool which implements the Hess - Smith panel method to com
 
 The analysis can be carried out for a single airfoil as well as considering the wing - tail interaction. In both cases, the ground effect condition may be taken into account.
 
-![image1_auto_x2](https://user-images.githubusercontent.com/91890502/189160682-6aae1055-c78a-472e-802d-7b4ab57b54b1.jpg | width=10)
-![image2_auto_x2](https://user-images.githubusercontent.com/91890502/189160711-993e2748-de79-4a6e-8c99-66de8b404962.jpg | width=10)
-![image3_auto_x2](https://user-images.githubusercontent.com/91890502/189160732-7d5f8acb-8307-458c-ac24-de2dae08966e.jpg | width=10)
-![image4_auto_x2](https://user-images.githubusercontent.com/91890502/189160747-eb78492b-b7ed-43d5-b8da-4b94618588b2.jpg | width=10)
-
-
+<img src="https://user-images.githubusercontent.com/91890502/189160682-6aae1055-c78a-472e-802d-7b4ab57b54b1.jpg" width="200"> <img src="https://user-images.githubusercontent.com/91890502/189160711-993e2748-de79-4a6e-8c99-66de8b404962.jpg" width="200"> <img src="https://user-images.githubusercontent.com/91890502/189160732-7d5f8acb-8307-458c-ac24-de2dae08966e.jpg" width="200"> <img src="https://user-images.githubusercontent.com/91890502/189160747-eb78492b-b7ed-43d5-b8da-4b94618588b2.jpg" width="200">
 
 Here a list of the main features:
 
