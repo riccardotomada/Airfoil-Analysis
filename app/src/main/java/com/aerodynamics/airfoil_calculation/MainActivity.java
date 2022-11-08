@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 		int defCol = button.getTextColors().getDefaultColor();
 		Button button1 = findViewById(R.id.button3);
 		Button button4 = findViewById(R.id.button4); //Generate dataset button
+		Button button5 = findViewById(R.id.button5);
 
 		groundEffect = findViewById(R.id.switchGround);
 		groundEffect.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -85,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
 				button4.setEnabled(false);
 				button4.getBackground().setColorFilter(Color.rgb(245,245,245), PorterDuff.Mode.MULTIPLY);
 				button4.setTextColor(Color.LTGRAY);
+				button5.setEnabled(false);
+				button5.getBackground().setColorFilter(Color.rgb(245,245,245), PorterDuff.Mode.MULTIPLY);
+				button5.setTextColor(Color.LTGRAY);
 			} else {
 				ConstraintLayout constraintLayout = findViewById(R.id.all05);
 				constraintLayout.setVisibility(View.GONE);
@@ -100,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
 				button4.setEnabled(true);
 				button4.getBackground().setColorFilter(null);
 				button4.setTextColor(defCol);
+				button5.setEnabled(true);
+				button5.getBackground().setColorFilter(null);
+				button5.setTextColor(defCol);
 				isGround = false;
 			}
 		});
@@ -141,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
 				button4.setEnabled(false);
 				button4.getBackground().setColorFilter(Color.rgb(245,245,245), PorterDuff.Mode.MULTIPLY);
 				button4.setTextColor(Color.LTGRAY);
+				button5.setEnabled(false);
+				button5.getBackground().setColorFilter(Color.rgb(245,245,245), PorterDuff.Mode.MULTIPLY);
+				button5.setTextColor(Color.LTGRAY);
 				isWT = true;
 			} else {
 				ConstraintLayout constraintLayout = findViewById(R.id.all06);
@@ -176,6 +186,9 @@ public class MainActivity extends AppCompatActivity {
 				button4.setEnabled(true);
 				button4.getBackground().setColorFilter(null);
 				button4.setTextColor(defCol);
+				button5.setEnabled(true);
+				button5.getBackground().setColorFilter(null);
+				button5.setTextColor(defCol);
 				isWT = false;
 			}
 		});
@@ -391,8 +404,12 @@ public class MainActivity extends AppCompatActivity {
 
 				startActivity(sendIntent);
 			}
-			else{
+			else if(view.getId() == R.id.button4){
 				Intent sendIntent = new Intent(MainActivity.this, GenerateDataset.class);
+				startActivity(sendIntent);
+			}
+			else{
+				Intent sendIntent = new Intent(MainActivity.this, AI_Inverse_problem.class);
 				startActivity(sendIntent);
 			}
 		}

@@ -43,14 +43,14 @@
     <string name="cl1_mirr">CL G.E.</string>
     <string name="cl2_mirr">CL - KJ G.E.</string>
     <string name="cl_zukowski">CL, via Kutta–Joukowski theorem: </string>
-    <string name="cl_thwaites">CL, Thwaites correction (viscous flow): </string>
-    <string name="cd_thwaites">CD, Thwaites correction (viscous flow): </string>
+    <string name="cl_thwaites">CL, viscous correction: </string>
+    <string name="cd_thwaites">CD, viscous correction: </string>
     <string name="angle1">Angle [°]</string>
     <string name="cl_text_thinwalled">CL estimation: </string>
     <string name="cM_text_thinwalled">CM estimation: </string>
     <string name="alfa_theodorsen">Theodorsen angle estimation: </string>
     <string name="naca45Error">Only NACA 4 and 5 digit available</string>
-    <string name="naca5Error">Illegal 5-digit tail designation. First three digits must be 210, 220,…250</string>
+    <string name="naca5Error">Illegal 5-digits designation. First three digits must be 210, 220,…250</string>
     <string name="nPanErrorMax">Too many Panels chosen for the discretization</string>
     <string name="nPanErrorMin">Too few Panels chosen for the discretization</string>
     <string name="wing">Wing, non-dimensionalized</string>
@@ -99,4 +99,9 @@
     <string name="speed5">Speed [m/s] </string>
     <string name="check_speed">The speed must be positive</string>
     <string name="check_comp">Max speed = 100[m/s] to avoid compressibility effects</string>
+    <string name="desired_cl">Enter the desired Cl: </string>
+    <string name="desired_cd">Enter the desired Cd: </string>
+    <string name="aoa_considered">Enter the angle of attack: </string>
+    <string name="get_profile">Get Airfoil</string>
+    <string name="title_activity_ai_inverse_problem">AI - Inverse problem</string>
 </resources>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".GenerateDataset"
     android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
@@ -15,8 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:id="@+id/activity_main"
+        tools:context=".GenerateDataset"
         android:layout_marginBottom="15dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

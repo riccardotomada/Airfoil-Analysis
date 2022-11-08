@@ -47,7 +47,7 @@ public class GenerateDataset extends AppCompatActivity {
 			 minThick4, maxThick4, minThick5, maxThick5, minAoa4, maxAoa4, minAoa5, maxAoa5, speeD4, speeD5;
 	String minfirstdig4, maxfirstdig4, minsecdig4, maxsecdig4, mintrqtdig4, maxtrqtdig4,
 		   minfirstdig5, maxfirstdig5, minsectrdig5, maxsectrdig5, minqtcin5, maxqtcin5;
-	String nacaid;
+	String nacaid, csv;
 	Double minaoa4, maxaoa4, minaoa5, maxaoa5, speed4, speed5;
 	Button button;
 
@@ -57,11 +57,6 @@ public class GenerateDataset extends AppCompatActivity {
 		setContentView(R.layout.activity_generate_dataset);
 
 		FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && false == Environment.isExternalStorageManager()) {
-			Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
-			startActivity(new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri));
-		}
 
 		naca4digits = findViewById(R.id.switch4);
 		naca5digits = findViewById(R.id.switch5);
@@ -302,7 +297,7 @@ public class GenerateDataset extends AppCompatActivity {
 			if (speeD5.getText().toString().isEmpty()){
 				speed5 = 50.0;
 			} else
-				speed5 = Double.parseDouble(speeD4.getText().toString());
+				speed5 = Double.parseDouble(speeD5.getText().toString());
 		}
 
 		if (naca4digits.isChecked()) {
@@ -325,8 +320,12 @@ public class GenerateDataset extends AppCompatActivity {
 				Toast.makeText(this, R.string.check_comp, Toast.LENGTH_LONG).show();
 			} else {
 
-				String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/CL_Dataset4digits.csv");
-
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+					csv = (Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath() + "/CL_Dataset4digits.csv");
+				}
+				else{
+					csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/CL_Dataset5digits.csv");
+				}
 				CSVWriter writer = null;
 				try {
 					writer = new CSVWriter(new FileWriter(csv));
@@ -369,7 +368,12 @@ public class GenerateDataset extends AppCompatActivity {
 				Toast.makeText(this, R.string.check_comp, Toast.LENGTH_LONG).show();
 			} else {
 
-				String csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/CL_Dataset5digits.csv");
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+					csv = (Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath() + "/CL_Dataset5digits.csv");
+				}
+				else{
+					csv = (Environment.getExternalStorageDirectory().getAbsolutePath() + "/CL_Dataset5digits.csv");
+				}
 
 				CSVWriter writer = null;
 				try {

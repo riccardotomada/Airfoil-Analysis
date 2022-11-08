@@ -99,4 +99,9 @@
     <string name="speed5">Velocità [m/s] </string>
     <string name="check_speed">La velocità deve essere positiva</string>
     <string name="check_comp">Velocità max = 100[m/s] per evitare effetti comprimibili</string>
+    <string name="desired_cl">Inserisci il Cl desiderato: </string>
+    <string name="desired_cd">Inserisci il Cd desiderato: </string>
+    <string name="aoa_considered">Inserisci l\'angolo d\'attacco considerato: </string>
+    <string name="get_profile">Ottieni il profilo</string>
+    <string name="title_activity_ai_inverse_problem">AI - problema inverso</string>
 </resources>
